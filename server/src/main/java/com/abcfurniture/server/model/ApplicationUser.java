@@ -31,6 +31,10 @@ public class ApplicationUser implements UserDetails {
         this.password = password;
     }
 
+    public ApplicationUser() {
+        super();
+    }
+
     public Integer getUserId() {
         return this.userId;
     }

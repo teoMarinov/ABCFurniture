@@ -17,9 +17,10 @@ public class AuthController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
+    public LoginResponseDTO registerUser(@RequestBody RegistrationDTO body) {
 
-        return authenticationService.registerUser(body.getUsername(), body.getUsername());
+        authenticationService.registerUser(body.getUsername(), body.getPassword());
+        return authenticationService.loginUser(body.getUsername(), body.getPassword());
     }
 
     @PostMapping("/login")
