@@ -1,18 +1,22 @@
 package com.abcfurniture.server.unitls;
 
+import org.springframework.stereotype.Component;
+
 import java.security.KeyPair;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
+
+@Component
 public class RSAKeyProperties {
 
     private RSAPublicKey publicKey;
     private RSAPrivateKey privateKey;
 
-    public RSAKeyProperties() {
+    public RSAKeyProperties(){
         KeyPair pair = KeyGeneratingUtility.generateRsaKey();
         this.publicKey = (RSAPublicKey) pair.getPublic();
-        this.privateKey = (RSAPrivateKey) pair.getPublic();
+        this.privateKey = (RSAPrivateKey) pair.getPrivate();
     }
 
     public RSAPublicKey getPublicKey() {
