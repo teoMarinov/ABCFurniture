@@ -3,8 +3,7 @@ package com.abcfurniture.server.service;
 
 import com.abcfurniture.server.dto.LoginResponseDTO;
 import com.abcfurniture.server.model.ApplicationUser;
-import com.abcfurniture.server.model.Role;
-import com.abcfurniture.server.repository.RoleRepository;
+
 import com.abcfurniture.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,8 +24,6 @@ public class AuthenticationService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -42,14 +39,8 @@ public class AuthenticationService {
     public ApplicationUser registerUser(String username, String password) {
 
         String encodedPassword = passwordEncoder.encode(password);
-
-        Role userRole = roleRepository.findByAuthority("USER").get();
-
-        Set<Role> authorities = new HashSet<>();
-
-        authorities.add(userRole);
-
-        return userRepository.save(new ApplicationUser(username, password, authorities));
+        System.out.println("We are here");
+        return userRepository.save(new ApplicationUser(username, encodedPassword));
     }
 
     public LoginResponseDTO loginUser(String username, String password) {

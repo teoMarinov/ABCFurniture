@@ -2,10 +2,12 @@ package com.abcfurniture.server.model;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,43 +19,17 @@ public class ApplicationUser implements UserDetails {
     @Column(name="user")
     private Integer userId;
 
-    @Column(unique = true)
     private String username;
 
     private String password;
 
-    public ApplicationUser( String username, String password, Set<Role> authorities) {
-        super();
-//        this.userId = userId;
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
-    }
-
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(
-            name = "user_role_junction",
-            joinColumns = {@JoinColumn(name="user_id")},
-            inverseJoinColumns = {@JoinColumn(name="role_id")}
-    )
-    private Set<Role> authorities;
+    private String role = "USER";
 
     public ApplicationUser( String username, String password) {
+        super();
         this.username = username;
         this.password = password;
     }
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.authorities;
-    }
-
-    public ApplicationUser() {
-        super();
-        this.authorities = new HashSet<Role>();
-    }
-
 
     public Integer getUserId() {
         return this.userId;
@@ -71,8 +47,13 @@ public class ApplicationUser implements UserDetails {
         this.password = password;
     }
 
-    public void setAuthorities(Set<Role> authorities) {
-        this.authorities = authorities;
+    public void setAuthorities(String authorities) {
+        this.role = authorities;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     @Override
