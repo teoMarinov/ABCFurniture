@@ -9,7 +9,7 @@ public class RegistrationDTO {
 
     @NotNull(message = "Username can't be null")
     @NotBlank(message = "Username can't be blank")
-    @Size(max = 5, message = "MIN USER IS 3")
+    @Size(min = 3, message = "MIN USER IS 3 AND MAX IS 6", max = 6)
     private String username;
 
     @NotNull(message = "Password can't be null")
