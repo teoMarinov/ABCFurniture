@@ -18,6 +18,8 @@ import {
 import CardWrapper from "./CardWrapper";
 import { Button } from "../ui/button";
 import axios from "axios";
+import { FormError } from "./FormError";
+import { FormSuccess } from "./FormSuccess";
 
 const Login = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -39,8 +41,9 @@ const Login = () => {
     startTransition(() => {
       axios
         .post("http://localhost:8080/auth/login", values)
-        .then((response: any) => {
-          console.log(response);
+        .then(({ data }) => {
+          setSuccess(data.success);
+          setError(data.error);
         });
     });
   };
@@ -92,6 +95,8 @@ const Login = () => {
                 )}
               />
             </div>
+            <FormError message={error} />
+            <FormSuccess message={success} />
             <Button disabled={isPending} type="submit" className="w-full">
               Login
             </Button>
