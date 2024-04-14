@@ -1,37 +1,48 @@
 package com.abcfurniture.server.dto;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class RegistrationDTO {
 
-    @NotNull(message = "Username can't be null")
-    @NotBlank(message = "Username can't be blank")
-    @Size(min = 3, message = "MIN USER IS 3 AND MAX IS 6", max = 6)
-    private String username;
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String name;
 
-    @NotNull(message = "Password can't be null")
-    @NotBlank(message = "Password can't be blank")
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    @Email
+    private String email;
+
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    @Size(min = 5, max = 32)
     private String password;
 
-    public RegistrationDTO() {
+    public RegistrationDTO() {}
 
-    }
-
-    public RegistrationDTO(String username, String password) {
-        this.username = username;
+    public RegistrationDTO(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
         this.password = password;
     }
 
-
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

@@ -3,6 +3,7 @@ package com.abcfurniture.server.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,40 +22,23 @@ public class ApplicationUser implements UserDetails {
     @Column(name="user")
     private Integer userId;
 
-    private String username;
+    private String name;
+
+    public ApplicationUser( String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    @Column(unique = true)
+    private String email;
 
     private String password;
 
     private String role = "USER";
 
-    public ApplicationUser( String username, String password) {
-        super();
-        this.username = username;
-        this.password = password;
-    }
-
     public ApplicationUser() {
         super();
-    }
-
-    public Integer getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAuthorities(String authorities) {
-        this.role = authorities;
     }
 
     @Override
@@ -69,7 +53,7 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
     @Override
@@ -93,6 +77,5 @@ public class ApplicationUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 
 }

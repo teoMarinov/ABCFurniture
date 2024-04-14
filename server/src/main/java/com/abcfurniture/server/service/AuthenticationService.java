@@ -34,21 +34,21 @@ public class AuthenticationService {
 
 
 
-    public ApplicationUser registerUser(String username, String password) {
+    public ApplicationUser registerUser(String name, String email, String password) {
+        System.out.println(email + "   " + password);
+
         String encodedPassword = passwordEncoder.encode(password);
-        return userRepository.save(new ApplicationUser(username, encodedPassword));
+        return userRepository.save(new ApplicationUser(name, email, encodedPassword));
     }
 
-    public LoginResponseDTO loginUser(String username, String password) {
-
+    public LoginResponseDTO loginUser(String email, String password) {
         try {
             Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(username, password)
+                    new UsernamePasswordAuthenticationToken(email, password)
             );
-
             String token = tokenService.generateJwt(auth);
 
-            return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
+            return new LoginResponseDTO(userRepository.findByEmail(email).get(), token);
 
         } catch (AuthenticationException e) {
             return new LoginResponseDTO(null, "");

@@ -21,13 +21,13 @@ public class AuthController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public LoginResponseDTO registerUser( @Valid @RequestBody  RegistrationDTO body) {
-        authenticationService.registerUser(body.getUsername(), body.getPassword());
-        return authenticationService.loginUser(body.getUsername(), body.getPassword());
+    public LoginResponseDTO registerUser( @Valid @RequestBody RegistrationDTO body) {
+        authenticationService.registerUser(body.getName(), body.getEmail(), body.getPassword());
+        return authenticationService.loginUser(body.getEmail(), body.getPassword());
     }
 
     @PostMapping("/login")
     public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body) {
-        return authenticationService.loginUser(body.getUsername(), body.getPassword());
+        return authenticationService.loginUser(body.getEmail(), body.getPassword());
     }
 }
