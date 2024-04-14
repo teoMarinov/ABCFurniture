@@ -43,7 +43,7 @@ public class AuthenticationService {
 
     public LoginResponseDTO loginUser(String email, String password) {
         try {
-            
+
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );

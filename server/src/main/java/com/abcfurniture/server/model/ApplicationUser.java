@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -41,12 +42,19 @@ public class ApplicationUser implements UserDetails {
 
     private String password;
 
-    private String role = "USER";
+    private final String role = "CUSTOMER";
+
+    private final LocalDateTime created_at = LocalDateTime.now();
 
     public ApplicationUser() {
         super();
     }
-    public ApplicationUser( String name, String email, String password) {
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public ApplicationUser(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
