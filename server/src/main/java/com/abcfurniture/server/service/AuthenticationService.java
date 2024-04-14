@@ -43,15 +43,16 @@ public class AuthenticationService {
 
     public LoginResponseDTO loginUser(String email, String password) {
         try {
+            
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
-            String token = tokenService.generateJwt(auth);
 
+            String token = tokenService.generateJwt(auth);
 
             Optional<ApplicationUser> userOptional = userRepository.findByEmail(email);
 
-          return userOptional.map(user -> {
+            return userOptional.map(user -> {
 
                 return new LoginResponseDTO(
                         user.getUserId(),
