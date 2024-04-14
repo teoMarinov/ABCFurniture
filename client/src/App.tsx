@@ -5,6 +5,8 @@ import { Label } from "./components/ui/label";
 import { Input } from "./components/ui/input";
 import { Routes, Route } from "react-router-dom";
 import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+
 export default function Home() {
   const [formInfo, setFormInfo] = useState({ username: "", password: "" });
 
@@ -22,7 +24,7 @@ export default function Home() {
     <div className="h-screen w-screen">
       <Routes>
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
