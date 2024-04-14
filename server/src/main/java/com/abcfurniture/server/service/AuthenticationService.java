@@ -51,23 +51,20 @@ public class AuthenticationService {
 
             Optional<ApplicationUser> userOptional = userRepository.findByEmail(email);
 
-            LoginResponseDTO response = userOptional.map(user -> {
-                LoginResponseDTO dto = new LoginResponseDTO();
-                dto.setEmail(user.getEmail());
-                dto.setName(user.getName());
-                dto.setRole(user.getRole());
-                dto.setUserId(user.getUserId());
-                dto.setJwt(token);
-                dto.setSuccess("Logging in");
-                return dto;
-            }).orElse(new LoginResponseDTO());
+          return userOptional.map(user -> {
 
-            return response;
+                return new LoginResponseDTO(
+                        user.getUserId(),
+                        user.getName(),
+                        user.getEmail(),
+                        user.getRole(),
+                        token,
+                        "Login Success"
+                );
+            }).orElse(new LoginResponseDTO("Something went wrong with authService.login()"));
 
         } catch (AuthenticationException e) {
-            LoginResponseDTO response = new LoginResponseDTO();
-            response.setError("Email and password don't match");
-            return response;
+            return new LoginResponseDTO("Email and password don't match");
         }
     }
 

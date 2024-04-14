@@ -27,9 +27,7 @@ public class AuthController {
     public LoginResponseDTO registerUser( @Valid @RequestBody RegisterDTO body) {
 
         if (userRepository.findByEmail(body.getEmail()).isPresent()) {
-            LoginResponseDTO response = new LoginResponseDTO();
-            response.setError("Email already in use");
-            return response;
+            return new LoginResponseDTO("Email already in use");
         }
 
             authenticationService.registerUser(body.getName(), body.getEmail(), body.getPassword());

@@ -17,6 +17,18 @@ public class LoginResponseDTO {
         super();
     }
 
+    public LoginResponseDTO(Integer userId, String name, String email, String role, String jwt, String success) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.role = role;
+        this.jwt = jwt;
+        this.success = success;
+    }
+
+    public LoginResponseDTO(String error) {
+        this.error = error;
+    }
 
     public Integer getUserId() {
         return userId;
