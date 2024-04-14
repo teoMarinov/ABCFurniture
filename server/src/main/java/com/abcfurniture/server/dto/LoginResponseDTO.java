@@ -2,6 +2,8 @@ package com.abcfurniture.server.dto;
 
 import com.abcfurniture.server.model.ApplicationUser;
 
+import java.time.LocalDateTime;
+
 public class LoginResponseDTO {
 
     private Integer userId;
@@ -12,18 +14,21 @@ public class LoginResponseDTO {
     private String success;
     private String error;
 
+    private LocalDateTime created_at;
+
 
     public LoginResponseDTO() {
         super();
     }
 
-    public LoginResponseDTO(Integer userId, String name, String email, String role, String jwt, String success) {
+    public LoginResponseDTO(Integer userId, String name, String email, String role, String jwt, String success, LocalDateTime created_at) {
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.role = role;
         this.jwt = jwt;
         this.success = success;
+        this.created_at = created_at;
     }
 
     public LoginResponseDTO(String error) {
@@ -56,5 +61,9 @@ public class LoginResponseDTO {
 
     public String getError() {
         return error;
+    }
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 }

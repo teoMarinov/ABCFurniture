@@ -60,7 +60,8 @@ public class AuthenticationService {
                         user.getEmail(),
                         user.getRole(),
                         token,
-                        "Login Success"
+                        "Login Success",
+                        user.getCreated_at()
                 );
             }).orElse(new LoginResponseDTO("Something went wrong with authService.login()"));
 
