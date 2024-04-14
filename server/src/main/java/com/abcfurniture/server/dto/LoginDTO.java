@@ -1,40 +1,25 @@
 package com.abcfurniture.server.dto;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
-public class RegistrationDTO {
+public class LoginDTO {
 
-    @NotNull
-    @NotBlank
-    @NotEmpty
-    private String name;
 
     @NotNull
     @NotBlank
     @NotEmpty
-    @Email
     private String email;
 
     @NotNull
     @NotBlank
     @NotEmpty
-    @Size(min = 5, max = 32)
     private String password;
 
-    public RegistrationDTO() {}
-
-    public RegistrationDTO(String name, String email, String password) {
-        this.name = name;
+    public LoginDTO(String email, String password) {
         this.email = email;
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
@@ -53,5 +38,3 @@ public class RegistrationDTO {
         this.password = password;
     }
 }
-
-

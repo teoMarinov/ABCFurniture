@@ -22,13 +22,19 @@ public class ApplicationUser implements UserDetails {
     @Column(name="user")
     private Integer userId;
 
-    private String name;
-
-    public ApplicationUser( String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
+    public Integer getUserId() {
+        return userId;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    private String name;
 
     @Column(unique = true)
     private String email;
@@ -39,6 +45,11 @@ public class ApplicationUser implements UserDetails {
 
     public ApplicationUser() {
         super();
+    }
+    public ApplicationUser( String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     @Override
@@ -52,7 +63,9 @@ public class ApplicationUser implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername(){return this.email;}
+
+    public String getEmail() {
         return this.email;
     }
 

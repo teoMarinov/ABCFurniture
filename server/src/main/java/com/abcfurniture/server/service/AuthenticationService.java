@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @Service
 @Transactional
@@ -35,8 +37,6 @@ public class AuthenticationService {
 
 
     public ApplicationUser registerUser(String name, String email, String password) {
-        System.out.println(email + "   " + password);
-
         String encodedPassword = passwordEncoder.encode(password);
         return userRepository.save(new ApplicationUser(name, email, encodedPassword));
     }
@@ -48,10 +48,26 @@ public class AuthenticationService {
             );
             String token = tokenService.generateJwt(auth);
 
-            return new LoginResponseDTO(userRepository.findByEmail(email).get(), token);
+
+            Optional<ApplicationUser> userOptional = userRepository.findByEmail(email);
+
+            LoginResponseDTO response = userOptional.map(user -> {
+                LoginResponseDTO dto = new LoginResponseDTO();
+                dto.setEmail(user.getEmail());
+                dto.setName(user.getName());
+                dto.setRole(user.getRole());
+                dto.setUserId(user.getUserId());
+                dto.setJwt(token);
+                dto.setSuccess("Logging in");
+                return dto;
+            }).orElse(new LoginResponseDTO());
+
+            return response;
 
         } catch (AuthenticationException e) {
-            return new LoginResponseDTO(null, "");
+            LoginResponseDTO response = new LoginResponseDTO();
+            response.setError("Email and password don't match");
+            return response;
         }
     }
 
