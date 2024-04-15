@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext<{
   user: userDataType | null;
-  singIn: (user: userDataType, jwt: string) => void;
-  singOut: () => void;
+  signIn: (user: userDataType, jwt: string) => void;
+  signOut: () => void;
   token: string;
 }>({
   user: null,
-  singIn: () => {},
-  singOut: () => {},
+  signIn: () => {},
+  signOut: () => {},
   token: "",
 });
 
@@ -19,14 +19,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const navigate = useNavigate();
 
-  const singIn = (user: userDataType, jwt: string) => {
+  const signIn = (user: userDataType, jwt: string) => {
     setUser(user);
     setToken(jwt);
     localStorage.setItem("token", jwt);
     navigate("/");
   };
 
-  const singOut = () => {
+  const signOut = () => {
     setUser(null);
     setToken("");
     localStorage.removeItem("token");
@@ -34,7 +34,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, singIn, singOut }}>
+    <AuthContext.Provider value={{ token, user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
