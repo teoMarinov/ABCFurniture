@@ -11,6 +11,7 @@ const AuthenticatedDropdown = ({
   return (
     <>
       <DropdownButton onClick={() => nav("/profile")} text="Profile" />
+      <DropdownButton onClick={() => nav("/orders")} text="Your orders" />
       <DropdownButton onClick={signOut} text="Log out" />
     </>
   );

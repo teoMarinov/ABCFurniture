@@ -6,7 +6,7 @@ interface DropDownButtonProps {
 }
 const DropdownButton = ({ onClick, text }: DropDownButtonProps) => {
   return (
-    <Button onClick={onClick} variant={"ghost"} className="w-full inline">
+    <Button onClick={onClick} variant={"ghost"} className="w-full inline text-left">
       {text}
     </Button>
   );
