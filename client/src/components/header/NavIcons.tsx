@@ -10,7 +10,7 @@ const NavIcons = () => {
   return (
     <div className="flex items-center justify-center gap-x-3 h-full">
       <PersonIcon
-        onClick={() => nav("/register")}
+        onClick={() => nav("/login")}
         className="h-6 w-6 cursor-pointer hover:scale-[110%]"
       />
       <HeartIcon

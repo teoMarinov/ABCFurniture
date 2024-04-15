@@ -21,9 +21,15 @@ import axios from "axios";
 import { FormError } from "./FormError";
 import { FormSuccess } from "./FormSuccess";
 
+import { useAuth } from "@/context/AuthProvider";
+
 const Login = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
+
+  const auth = useAuth();
+
+  console.log(auth.user)
 
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -35,6 +41,7 @@ const Login = () => {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+
     setError("");
     setSuccess("");
 
@@ -42,6 +49,7 @@ const Login = () => {
       axios
         .post("http://localhost:8080/auth/login", values)
         .then(({ data }) => {
+          auth.singIn(data.user, data.jwt)
           setSuccess(data.success);
           setError(data.error);
         });
