@@ -8,7 +8,7 @@ const Header = () => {
     <div className="w-screen h-[8vh] shadow-sm border-b border-gray-400 shadow-gray-200 p-4 flex justify-between items-center px-32">
       <img src={logo} />
       <SearchBar />
-      <NavIcons />
+      <NavIcons /> 
     </div>
   );
 };

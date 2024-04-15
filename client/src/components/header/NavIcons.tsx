@@ -8,7 +8,7 @@ const NavIcons = () => {
   const nav = useNavigate();
 
   return (
-    <div className="flex items-center justify-center gap-x-3 ">
+    <div className="flex items-center justify-center gap-x-3 h-full">
       <PersonIcon
         onClick={() => nav("/register")}
         className="h-6 w-6 cursor-pointer hover:scale-[110%]"

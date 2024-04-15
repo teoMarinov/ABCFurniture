@@ -2,6 +2,7 @@ package com.abcfurniture.server.service;
 
 
 import com.abcfurniture.server.dto.LoginResponseDTO;
+import com.abcfurniture.server.dto.UserDTO;
 import com.abcfurniture.server.model.ApplicationUser;
 
 import com.abcfurniture.server.repository.UserRepository;
@@ -52,17 +53,23 @@ public class AuthenticationService {
 
             Optional<ApplicationUser> userOptional = userRepository.findByEmail(email);
 
+
             return userOptional.map(user -> {
 
+            UserDTO userInfo = new UserDTO(
+                    user.getUserId(),
+                    user.getName(),
+                    user.getEmail(),
+                    user.getRole(),
+                    user.getCreated_at()
+            );
+
                 return new LoginResponseDTO(
-                        user.getUserId(),
-                        user.getName(),
-                        user.getEmail(),
-                        user.getRole(),
+                        userInfo,
                         token,
-                        "Logging In",
-                        user.getCreated_at()
+                        "Logging In"
                 );
+
             }).orElse(new LoginResponseDTO("Something went wrong with authService.login()"));
 
         } catch (AuthenticationException e) {
