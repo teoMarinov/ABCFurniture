@@ -26,12 +26,10 @@ import { useAuth } from "@/context/AuthProvider";
 const Login = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-
-  const auth = useAuth();
-
-  console.log(auth.user)
-
   const [isPending, startTransition] = useTransition();
+
+  const {signIn} = useAuth();
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -41,7 +39,6 @@ const Login = () => {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-
     setError("");
     setSuccess("");
 
@@ -49,7 +46,7 @@ const Login = () => {
       axios
         .post("http://localhost:8080/auth/login", values)
         .then(({ data }) => {
-          auth.singIn(data.user, data.jwt)
+          signIn(data.user, data.jwt);
           setSuccess(data.success);
           setError(data.error);
         });

@@ -20,11 +20,14 @@ import { Button } from "../ui/button";
 import axios from "axios";
 import { FormError } from "./FormError";
 import { FormSuccess } from "./FormSuccess";
+import { useAuth } from "@/context/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  
+  const {signIn} = useAuth();
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -44,6 +47,7 @@ const Register = () => {
       axios
         .post("http://localhost:8080/auth/register", values)
         .then(({ data }) => {
+          signIn(data.user, data.jwt);
           setSuccess(data.success);
           setError(data.error);
         });
