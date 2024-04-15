@@ -36,9 +36,9 @@ public class AuthenticationService {
 
 
 
-    public ApplicationUser registerUser(String name, String email, String password) {
+    public void registerUser(String name, String email, String password) {
         String encodedPassword = passwordEncoder.encode(password);
-        return userRepository.save(new ApplicationUser(name, email, encodedPassword));
+        userRepository.save(new ApplicationUser(name, email, encodedPassword));
     }
 
     public LoginResponseDTO loginUser(String email, String password) {
