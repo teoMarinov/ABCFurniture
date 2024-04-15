@@ -5,12 +5,12 @@ import Header from "./components/header/Header";
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen">
-      <Header />
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+    <div className="h-screen">
+    <Header />
+    <Routes>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
     </div>
   );
 }

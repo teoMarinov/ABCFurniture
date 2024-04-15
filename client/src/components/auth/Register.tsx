@@ -4,7 +4,6 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema } from "../../schemas";
-import { userDataType } from "@/types";
 
 import { Input } from "../ui/input";
 import {
@@ -52,7 +51,7 @@ const Register = () => {
   };
 
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-[92vh] flex justify-center items-center">
       <CardWrapper
         headerLabel="Register"
         linkTo="/login"
