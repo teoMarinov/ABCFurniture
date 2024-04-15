@@ -1,18 +1,19 @@
-import { PersonIcon } from "@radix-ui/react-icons";
 import { HeartIcon } from "lucide-react";
 import { ShoppingBasket } from "lucide-react";
 import CurrentPrice from "./CurrentPrice";
-import { useNavigate } from "react-router-dom";
+import ProfileDropdown from "./profileDropdown/ProfileDropdown";
+import { useAuth } from "@/context/AuthProvider";
 
-const NavIcons = () => {
-  const nav = useNavigate();
+interface NavIconsProps {
+  nav: (arg: string) => void;
+}
+
+const NavIcons = ({ nav }: NavIconsProps) => {
+  const { user, signOut } = useAuth();
 
   return (
     <div className="flex items-center justify-center gap-x-3 h-full">
-      <PersonIcon
-        onClick={() => nav("/login")}
-        className="h-6 w-6 cursor-pointer hover:scale-[110%]"
-      />
+      <ProfileDropdown nav={nav} user={user} signOut={signOut} />
       <HeartIcon
         onClick={() => nav("/favorites")}
         className="h-6 w-6 hover:scale-[110%] cursor-pointer"
