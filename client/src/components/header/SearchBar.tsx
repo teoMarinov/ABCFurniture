@@ -1,8 +1,7 @@
 import { Input } from "../ui/input";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
-interface SearchBarProps {}
-const SearchBar: React.FC<SearchBarProps> = ({}) => {
+const SearchBar = () => {
   return (
     <div className="relative w-[500px]">
       <Input className="w-full rounded-full focus-visible:ring-1 focus-visible:ring-offset-0" />
