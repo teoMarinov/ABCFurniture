@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import DropDownButton from "./DropdownButton";
+import DropdownButton from "./DropdownButton";
 
 interface PublicDropdownProps {
   nav: (arg: string) => void;
@@ -8,8 +7,8 @@ interface PublicDropdownProps {
 const PublicDropdown = ({ nav }: PublicDropdownProps) => {
   return (
     <>
-      <DropDownButton onClick={() => nav("/login")} text="Login" />
-      <DropDownButton onClick={() => nav("/register")} text="Register" />
+      <DropdownButton onClick={() => nav("/login")} text="Login" />
+      <DropdownButton onClick={() => nav("/register")} text="Register" />
 
     </>
   );

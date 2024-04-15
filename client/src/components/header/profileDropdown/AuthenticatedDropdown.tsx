@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import DropDownButton from "./DropdownButton";
+import DropdownButton from "./DropdownButton";
 
 interface AuthenticatedDropdownProps {
   nav: (arg: string) => void;
@@ -11,8 +10,8 @@ const AuthenticatedDropdown = ({
 }: AuthenticatedDropdownProps) => {
   return (
     <>
-      <DropDownButton onClick={() => nav("/profile")} text="Profile" />
-      <DropDownButton onClick={signOut} text="Log out" />
+      <DropdownButton onClick={() => nav("/profile")} text="Profile" />
+      <DropdownButton onClick={signOut} text="Log out" />
     </>
   );
 };
