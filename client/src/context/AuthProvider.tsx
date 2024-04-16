@@ -7,23 +7,18 @@ const AuthContext = createContext<{
   user: userDataType | null;
   signIn: (user: userDataType, jwt: string) => void;
   signOut: () => void;
-  token: string;
 }>({
   user: null,
   signIn: () => {},
   signOut: () => {},
-  token: "",
 });
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<null | userDataType>(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
   const navigate = useNavigate();
 
   const signIn = (user: userDataType, jwt: string) => {
     setUser(user);
-    setToken(jwt);
-    console.log(jwt);
     document.cookie = `token=${jwt}; expires=${new Date(
       Date.now() + 7 * 24 * 60 * 60 * 1000
     ).toUTCString()}; path=/`;
@@ -32,7 +27,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = () => {
     setUser(null);
-    setToken("");
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     navigate("/login");
   };
@@ -72,7 +66,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ token, user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
