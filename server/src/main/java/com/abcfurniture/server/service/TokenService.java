@@ -27,7 +27,10 @@ import java.util.stream.Collectors;
 public class TokenService {
 
     private SecretKey Key;
-    private static final long EXPARATION_TIME = 86400000;
+
+    @Autowired
+    private TokenBlacklistService blacklistService;
+    private static final long EXPIRATION_TIME = 86400000;
     public TokenService(){
         String secreteString = "843567893696976453275974432697R634976R738467TR678T34865R6834R8763T478378637664538745673865783678548735687R3";
         byte[] keyBytes = Base64.getDecoder().decode(secreteString.getBytes(StandardCharsets.UTF_8));
@@ -38,7 +41,7 @@ public class TokenService {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + EXPARATION_TIME))
+                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(Key)
                 .compact();
     }
@@ -47,7 +50,7 @@ public class TokenService {
 //                .claims(claims)
 //                .subject(userDetails.getUsername())
 //                .issuedAt(new Date(System.currentTimeMillis()))
-//                .expiration(new Date(System.currentTimeMillis() + EXPARATION_TIME))
+//                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 //                .signWith(Key)
 //                .compact();
 //    }
@@ -61,7 +64,8 @@ public class TokenService {
 
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = getEmailByToken(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        final boolean isBlacklisted = blacklistService.isBlacklisted(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token) && !isBlacklisted);
     }
     public boolean isTokenExpired(String token){
         return extractClaims(token, Claims::getExpiration).before(new Date());
