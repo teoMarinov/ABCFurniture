@@ -23,6 +23,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signIn = (user: userDataType, jwt: string) => {
     setUser(user);
     setToken(jwt);
+    console.log(jwt);
     document.cookie = `token=${jwt}; expires=${new Date(
       Date.now() + 7 * 24 * 60 * 60 * 1000
     ).toUTCString()}; path=/`;
@@ -56,7 +57,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         axios
           .get("http://localhost:8080/auth/jwtLogin", config)
           .then((res) => setUser(res.data.user))
-          .catch((err) => console.log(err))
+          .catch(
+            () =>
+              (document.cookie =
+                "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;")
+          )
           .finally(() => navigate("/"));
       } else {
         console.log("NO TOKEN");
