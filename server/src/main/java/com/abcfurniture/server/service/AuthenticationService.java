@@ -79,4 +79,27 @@ public class AuthenticationService {
         }
     }
 
+    public LoginResponseDTO tokenLogin(String token) {
+               String userEmail = tokenService.getEmailByToken(token);
+               ApplicationUser user = userRepository.findByEmail(userEmail).orElseThrow();
+               boolean tokenIsValid = tokenService.isTokenValid(token, user);
+               if (tokenIsValid) {
+                   UserDTO userInfo = new UserDTO(
+                           user.getUserId(),
+                           user.getName(),
+                           user.getEmail(),
+                           user.getRole(),
+                           user.getCreated_at()
+                   );
+                   return new LoginResponseDTO(
+                           userInfo,
+                           token,
+                           "Logging In"
+                   );
+               } else {
+                   return new LoginResponseDTO("Invalid token");
+               }
+
+    }
+
 }

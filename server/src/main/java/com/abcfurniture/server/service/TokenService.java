@@ -52,7 +52,7 @@ public class TokenService {
 //                .compact();
 //    }
 
-    public String extractUsername(String token){
+    public String getEmailByToken(String token){
         return extractClaims(token, Claims::getSubject);
     }
     private <T> T extractClaims(String token, Function<Claims, T> claimsTFunction){
@@ -60,7 +60,7 @@ public class TokenService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails){
-        final String username = extractUsername(token);
+        final String username = getEmailByToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
     public boolean isTokenExpired(String token){
