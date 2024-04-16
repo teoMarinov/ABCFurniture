@@ -13,9 +13,7 @@ export default function Home() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route element={<PrivateRoutes />}>
-            
-          </Route>
+          <Route element={<PrivateRoutes />}></Route>
         </Routes>
       </AuthProvider>
     </div>

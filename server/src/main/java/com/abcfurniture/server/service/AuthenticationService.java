@@ -45,11 +45,13 @@ public class AuthenticationService {
     public LoginResponseDTO loginUser(String email, String password) {
         try {
 
-            Authentication auth = authenticationManager.authenticate(
+            authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
 
-            String token = tokenService.generateJwt(auth);
+            ApplicationUser userReq = userRepository.findByEmail(email).orElseThrow();
+
+            String token = tokenService.generateToken(userReq);
 
             Optional<ApplicationUser> userOptional = userRepository.findByEmail(email);
 
@@ -75,6 +77,29 @@ public class AuthenticationService {
         } catch (AuthenticationException e) {
             return new LoginResponseDTO("Email and password don't match");
         }
+    }
+
+    public LoginResponseDTO tokenLogin(String token) {
+               String userEmail = tokenService.getEmailByToken(token);
+               ApplicationUser user = userRepository.findByEmail(userEmail).orElseThrow();
+               boolean tokenIsValid = tokenService.isTokenValid(token, user);
+               if (tokenIsValid) {
+                   UserDTO userInfo = new UserDTO(
+                           user.getUserId(),
+                           user.getName(),
+                           user.getEmail(),
+                           user.getRole(),
+                           user.getCreated_at()
+                   );
+                   return new LoginResponseDTO(
+                           userInfo,
+                           token,
+                           "Logging In"
+                   );
+               } else {
+                   return new LoginResponseDTO("Invalid token");
+               }
+
     }
 
 }
