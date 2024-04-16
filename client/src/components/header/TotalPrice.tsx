@@ -6,10 +6,14 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 
-const CurrentPrice = () => {
+interface TotalPriceProps {
+  nav: (arg: string) => void;
+}
+
+const TotalPrice = ({ nav }: TotalPriceProps) => {
   return (
     <HoverCard openDelay={50} closeDelay={50}>
-      <HoverCardTrigger asChild>
+      <HoverCardTrigger asChild onClick={() => nav('/cart')}>
         <div className="flex items-center cursor-pointer w-40 ">
           <p className="text-2xl pb-0.5">0.00</p>
           <EuroIcon className="size-6 ml-1" />
@@ -23,4 +27,4 @@ const CurrentPrice = () => {
   );
 };
 
-export default CurrentPrice;
+export default TotalPrice;
