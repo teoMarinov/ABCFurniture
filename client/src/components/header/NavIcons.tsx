@@ -1,6 +1,6 @@
 import { HeartIcon } from "lucide-react";
 import { ShoppingBasket } from "lucide-react";
-import CurrentPrice from "./CurrentPrice";
+import TotalPrice from "./TotalPrice";
 import ProfileDropdown from "./profileDropdown/ProfileDropdown";
 import { useAuth } from "@/context/AuthProvider";
 
@@ -24,7 +24,7 @@ const NavIcons = ({ nav }: NavIconsProps) => {
       />
       <div className="border-l h-full ml-2 mr-1 border-black" />
       <div onClick={() => nav("/cart")}>
-        <CurrentPrice />
+        <TotalPrice nav={nav}/>
       </div>
     </div>
   );
