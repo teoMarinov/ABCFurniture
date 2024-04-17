@@ -26,8 +26,8 @@ const Register = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
-  
-  const {signIn} = useAuth();
+
+  const { signIn } = useAuth();
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -47,9 +47,12 @@ const Register = () => {
       axios
         .post("http://localhost:8080/auth/register", values)
         .then(({ data }) => {
+          if (data.error) {
+            setError(data.error);
+            return;
+          }
           signIn(data.user, data.jwt);
           setSuccess(data.success);
-          setError(data.error);
         });
     });
   };
