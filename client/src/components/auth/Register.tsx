@@ -21,6 +21,7 @@ import axios from "axios";
 import { FormError } from "./FormError";
 import { FormSuccess } from "./FormSuccess";
 import { useAuth } from "@/context/AuthProvider";
+import { request } from "@/config/axios-helper";
 
 const Register = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -44,16 +45,14 @@ const Register = () => {
     setSuccess("");
 
     startTransition(() => {
-      axios
-        .post("http://localhost:8080/auth/register", values)
-        .then(({ data }) => {
-          if (data.error) {
-            setError(data.error);
-            return;
-          }
-          signIn(data.user, data.jwt);
-          setSuccess(data.success);
-        });
+      request("post", "/auth/register", values).then(({ data }) => {
+        if (data.error) {
+          setError(data.error);
+          return;
+        }
+        signIn(data.user, data.jwt);
+        setSuccess(data.success);
+      });
     });
   };
 

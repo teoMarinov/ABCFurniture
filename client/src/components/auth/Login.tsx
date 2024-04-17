@@ -22,6 +22,7 @@ import { FormError } from "./FormError";
 import { FormSuccess } from "./FormSuccess";
 
 import { useAuth } from "@/context/AuthProvider";
+import { request } from "@/config/axios-helper";
 
 const Login = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -43,8 +44,7 @@ const Login = () => {
     setSuccess("");
 
     startTransition(() => {
-      axios
-        .post("http://localhost:8080/auth/login", values)
+      request('post',"/auth/login" , values)
         .then(({ data }) => {
           if (data.error) {
             setError(data.error);
