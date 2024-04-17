@@ -1,3 +1,4 @@
+import { NavigationMenuItem } from "@/components/ui/navigation-menu";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
@@ -7,9 +8,11 @@ interface NavbarItemButtonProps {
 }
 const NavbarItemButton = ({ title, navTo }: NavbarItemButtonProps) => {
   return (
-    <Button variant={"ghost"}>
-      <Link to={navTo}>{title}</Link>
-    </Button>
+    <NavigationMenuItem>
+      <Button variant={"ghost"} className="w-60">
+        <Link to={navTo}>{title}</Link>
+      </Button>
+    </NavigationMenuItem>
   );
 };
 
