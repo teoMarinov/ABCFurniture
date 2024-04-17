@@ -1,5 +1,5 @@
+import { persistentLogin, setJwtToken } from "@/config/axios-helper";
 import { userDataType } from "@/types";
-import axios from "axios";
 import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,49 +19,23 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signIn = (user: userDataType, jwt: string) => {
     setUser(user);
-    document.cookie = `token=${jwt}; expires=${new Date(
-      Date.now() + 7 * 24 * 60 * 60 * 1000
-    ).toUTCString()}; path=/`;
+    setJwtToken(jwt);
     navigate("/");
   };
 
   const signOut = () => {
     setUser(null);
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setJwtToken("");
     navigate("/login");
   };
 
   useEffect(() => {
     try {
-      const tokenCookie = document.cookie
-        .split(";")
-        .find((cookie) => cookie.trim().startsWith("token="));
-      let token = null;
-      if (tokenCookie) {
-        token = tokenCookie.split("=")[1];
-      }
-
-      if (token) {
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        };
-
-        axios
-          .get("http://localhost:8080/auth/jwtLogin", config)
-          .then((res) => setUser(res.data.user))
-          .catch(
-            () =>
-              (document.cookie =
-                "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;")
-          )
-          .finally(() => navigate("/"));
-      } else {
-        console.log("NO TOKEN");
-      }
+      persistentLogin()
+        .then((res) => setUser(res.data.user))
+        .finally(() => navigate("/"));
     } catch (error) {
-      console.error("Error:", error);
+      // console.log(error.message);
     }
   }, []);
 
