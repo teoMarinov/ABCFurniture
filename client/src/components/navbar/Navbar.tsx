@@ -6,8 +6,10 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import NavbarItemButton from "./NavbarItemButton";
+import CategoriesMenu from "./CategoriesMenu";
 
 const Navbar = () => {
+
   return (
     <div className="h-10 px-32 py-1">
       <NavigationMenu>
@@ -15,7 +17,7 @@ const Navbar = () => {
           <NavigationMenuItem>
             <NavigationMenuTrigger className="w-60 justify-start">Categories</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className="size-44 bg-red-600"></div>
+              <CategoriesMenu />
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavbarItemButton title="Promotions" navTo="/promotions" />

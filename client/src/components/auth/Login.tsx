@@ -17,7 +17,6 @@ import {
 
 import CardWrapper from "./CardWrapper";
 import { Button } from "../ui/button";
-import axios from "axios";
 import { FormError } from "./FormError";
 import { FormSuccess } from "./FormSuccess";
 
