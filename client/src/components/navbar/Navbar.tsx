@@ -16,7 +16,7 @@ const Navbar = () => {
         <NavigationMenuList className="gap-x-20">
           <NavigationMenuItem>
             <NavigationMenuTrigger className="w-60 justify-start">
-              <Link to="categories">Categories</Link>
+              <Link to="products">Products</Link>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <CategoriesMenu />
