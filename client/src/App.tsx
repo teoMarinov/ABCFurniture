@@ -15,7 +15,7 @@ export default function Home() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/products" element={"This is products"}/>
+          {/* <Route path="/products" element={"This is products"}/> */}
           <Route path="/products/:category" element={"This is category"}/>
           <Route path="/products/:category/:subcategory" element={"This is sub-category"}/>
 

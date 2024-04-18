@@ -7,8 +7,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import NavbarItemButton from "./NavbarItemButton";
 import CategoriesMenu from "./CategoriesMenu";
-import { Link } from "react-router-dom";
-
 const Navbar = () => {
   return (
     <div className="h-10 px-32 py-1">
@@ -16,7 +14,7 @@ const Navbar = () => {
         <NavigationMenuList className="gap-x-20">
           <NavigationMenuItem>
             <NavigationMenuTrigger className="w-60 justify-start">
-              <Link to="products">Products</Link>
+              Products
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <CategoriesMenu />
