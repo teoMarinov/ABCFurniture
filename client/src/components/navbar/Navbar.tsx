@@ -7,15 +7,17 @@ import {
 } from "@/components/ui/navigation-menu";
 import NavbarItemButton from "./NavbarItemButton";
 import CategoriesMenu from "./CategoriesMenu";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-
   return (
     <div className="h-10 px-32 py-1">
       <NavigationMenu>
         <NavigationMenuList className="gap-x-20">
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="w-60 justify-start">Categories</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="w-60 justify-start">
+              <Link to="categories">Categories</Link>
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <CategoriesMenu />
             </NavigationMenuContent>
