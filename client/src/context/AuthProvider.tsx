@@ -37,7 +37,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     } catch (error) {
       // console.log(error.message);
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <AuthContext.Provider value={{ user, signIn, signOut }}>
