@@ -13,7 +13,7 @@ import CategoriesMenu from "./CategoriesMenu";
 const Navbar = ( ) => {
   return (
     <div>
-    <div className="h-10 px-32 py-1">
+    <div className="h-10 lg:px-32 px-5 py-1">
       <NavigationMenu>
         <NavigationMenuList className="gap-x-20">
           <NavigationMenuItem>
