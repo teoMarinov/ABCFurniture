@@ -47,7 +47,7 @@ const outdoorOptions = ["outdoor furniture"];
 
 const CategoriesMenu = () => {
   return (
-    <div className="h-96 flex gap-x-4 uppercase pl-9 pt-6">
+    <div className="lg:grid w-[80vw] 2xl:w-[88vw] 2xl:grid-cols-7 xl:grid-cols-4 grid-cols-3 hidden uppercase px-5">
       <ColContainer title="kitchen" options={kitchenOptions} />
       <ColContainer title="Bedroom" options={bedroomOptions} />
       <ColContainer

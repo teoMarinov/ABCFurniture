@@ -7,7 +7,7 @@ interface ColContainerProps {
 }
 const ColContainer = ({ title, options }: ColContainerProps) => {
   return (
-    <div className="w-56">
+    <div className="w-56 p-4">
       <div className="flex items-center relative">
         <ChevronRight className="size-4 absolute -left-4 top-[5px]" />
         <h1 className="font-semibold underline cursor-pointer">

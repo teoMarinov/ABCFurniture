@@ -7,8 +7,12 @@ import {
 } from "@/components/ui/navigation-menu";
 import NavbarItemButton from "./NavbarItemButton";
 import CategoriesMenu from "./CategoriesMenu";
-const Navbar = () => {
+
+
+
+const Navbar = ( ) => {
   return (
+    <div>
     <div className="h-10 px-32 py-1">
       <NavigationMenu>
         <NavigationMenuList className="gap-x-20">
@@ -24,6 +28,8 @@ const Navbar = () => {
           <NavbarItemButton title="Limited time" navTo="/limited-time" />
         </NavigationMenuList>
       </NavigationMenu>
+    </div>
+    {/* {children} */}
     </div>
   );
 };
