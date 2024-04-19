@@ -8,7 +8,7 @@ const Header = () => {
   const nav = useNavigate();
 
   return (
-    <div className="w-screen h-[8vh] shadow-sm border-b border-gray-400 shadow-gray-200 p-4 flex justify-between items-center px-32">
+    <div className="w-screen h-[8vh] shadow-sm border-b border-gray-400 shadow-gray-200 p-4 flex justify-between items-center xl:px-32 px-5">
       <img src={logo} className="cursor-pointer" onClick={() => nav("/")} />
       <SearchBar />
       <NavIcons nav={nav} />
