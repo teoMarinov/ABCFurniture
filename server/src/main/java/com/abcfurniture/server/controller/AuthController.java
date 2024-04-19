@@ -6,8 +6,6 @@ import com.abcfurniture.server.dto.LoginResponseDTO;
 import com.abcfurniture.server.dto.RegisterDTO;
 import com.abcfurniture.server.repository.UserRepository;
 import com.abcfurniture.server.service.AuthenticationService;
-import com.abcfurniture.server.service.TokenBlacklistService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -24,9 +22,6 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private TokenBlacklistService blacklistService;
 
     @PostMapping("/register")
     public LoginResponseDTO registerUser( @Valid @RequestBody RegisterDTO body) {
@@ -60,18 +55,4 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/deleteToken")
-    public String deleteToken(@RequestHeader("Authorization") String authorizationHeader){
-        String jwtToken = null;
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwtToken = authorizationHeader.substring(7);
-        }
-        if (jwtToken != null) {
-            blacklistService.addToBlacklist(jwtToken);
-            return "Token removed";
-        } else {
-            return "Something went wrong AuthController autoLoginUser";
-        }
-
-    }
 }
