@@ -8,20 +8,23 @@ import Navbar from "./components/navbar/Navbar";
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen">
-      <AuthProvider>
-        <Header />
-        <Navbar />
-        <Routes>
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          {/* <Route path="/products" element={"This is products"}/> */}
-          <Route path="/products/:category" element={"This is category"}/>
-          <Route path="/products/:category/:subcategory" element={"This is sub-category"}/>
+    <div className="h-full w-full overflow-auto">
+     
+        <AuthProvider>
+          <Header />
+          <Navbar />
+          <Routes>
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/products/:category" element={"This is category"} />
+            <Route
+              path="/products/:category/:subcategory"
+              element={"This is sub-category"}
+            />
 
-          <Route element={<PrivateRoutes />}></Route>
-        </Routes>
-      </AuthProvider>
-    </div>
+            <Route element={<PrivateRoutes />}></Route>
+          </Routes>
+        </AuthProvider>
+      </div>
   );
 }

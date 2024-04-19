@@ -4,7 +4,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { PersonIcon } from "@radix-ui/react-icons";
-import { userDataType } from "@/types";
+import { userDataType } from "@/schemas/types";
 import PublicDropdown from "./PublicDropdown";
 import AuthenticatedDropdown from "./AuthenticatedDropdown";
 

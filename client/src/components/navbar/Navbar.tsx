@@ -17,7 +17,7 @@ const Navbar = ( ) => {
       <NavigationMenu>
         <NavigationMenuList className="gap-x-20">
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="w-60 justify-start">
+            <NavigationMenuTrigger className="justify-start">
               Products
             </NavigationMenuTrigger>
             <NavigationMenuContent>
