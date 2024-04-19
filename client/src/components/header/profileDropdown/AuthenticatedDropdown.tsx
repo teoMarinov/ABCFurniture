@@ -10,6 +10,7 @@ const AuthenticatedDropdown = ({
 }: AuthenticatedDropdownProps) => {
   return (
     <>
+      <DropdownButton onClick={() => nav("/add-product")} text="Add product" />
       <DropdownButton onClick={() => nav("/profile")} text="Profile" />
       <DropdownButton onClick={() => nav("/orders")} text="Your orders" />
       <DropdownButton onClick={signOut} text="Log out" />
