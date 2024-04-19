@@ -14,7 +14,7 @@ const TotalPrice = ({ nav }: TotalPriceProps) => {
   return (
     <HoverCard openDelay={50} closeDelay={50}>
       <HoverCardTrigger asChild onClick={() => nav('/cart')}>
-        <div className="flex items-center cursor-pointer w-40 ">
+        <div className="flex items-center cursor-pointer ">
           <p className="text-2xl pb-0.5">0.00</p>
           <EuroIcon className="size-6 ml-1" />
           <ChevronDown className="size-5 ml-1" />

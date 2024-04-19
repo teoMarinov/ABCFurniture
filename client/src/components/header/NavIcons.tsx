@@ -22,8 +22,8 @@ const NavIcons = ({ nav }: NavIconsProps) => {
         onClick={() => nav("/cart")}
         className="h-6 w-6 hover:scale-[120%] cursor-pointer"
       />
-      <div className="border-l h-full ml-2 mr-1 border-black" />
-      <div onClick={() => nav("/cart")}>
+      <div className="border-l h-full ml-2 mr-1 border-black hidden sm:inline-block" />
+      <div className="hidden sm:inline-block" onClick={() => nav("/cart")}>
         <TotalPrice nav={nav}/>
       </div>
     </div>
