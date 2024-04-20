@@ -39,8 +39,9 @@ export const request = (method: string, url: string, data?: unknown) => {
 export const persistentLogin = () => {
   if (!getAuthToken()) throw new Error("No Auth token");
 
-  return request("get", "/auth/jwtLogin").catch(() => {
+  return request("get", "/auth/jwtLogin")
+  .catch(() => {
     setJwtToken("")
-    throw new Error("");
+    throw new Error("Token has expired");
   })
 };

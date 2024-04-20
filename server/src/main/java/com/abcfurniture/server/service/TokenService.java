@@ -29,7 +29,7 @@ public class TokenService {
     private SecretKey Key;
 
     @Autowired
-    private static final long EXPIRATION_TIME =  7;
+    private static final long EXPIRATION_TIME =  86400000 * 7;
 //    1000 * 60 * 60 * 24
     public TokenService(){
         String secreteString = "843567893696976453275974432697R634976R738467TR678T34865R6834R8763T478378637664538745673865783678548735687R3";
