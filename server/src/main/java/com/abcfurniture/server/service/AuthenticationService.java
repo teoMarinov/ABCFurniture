@@ -83,6 +83,7 @@ public class AuthenticationService {
                String userEmail = tokenService.getEmailByToken(token);
                ApplicationUser user = userRepository.findByEmail(userEmail).orElseThrow();
                boolean tokenIsValid = tokenService.isTokenValid(token, user);
+               String updatedToken = tokenService.generateToken(user);
                if (tokenIsValid) {
                    UserDTO userInfo = new UserDTO(
                            user.getUserId(),
@@ -93,7 +94,7 @@ public class AuthenticationService {
                    );
                    return new LoginResponseDTO(
                            userInfo,
-                           token,
+                           updatedToken,
                            "Logging In"
                    );
                } else {

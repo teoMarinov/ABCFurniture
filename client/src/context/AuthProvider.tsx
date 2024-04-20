@@ -32,7 +32,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     try {
       persistentLogin()
-        .then((res) => setUser(res.data.user))
+        .then(({ data }) => signIn(data.user, data.jwt))
         .finally(() => navigate("/"));
     } catch (error) {
       // console.log(error.message);
