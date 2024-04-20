@@ -12,7 +12,7 @@ const NavIcons = ({ nav }: NavIconsProps) => {
   const { user, signOut } = useAuth();
 
   return (
-    <div className="flex items-center justify-center gap-x-3 h-full w-24">
+    <div className="flex items-center justify-center gap-x-3 h-full sm:w-fit w-24">
       <ProfileDropdown nav={nav} user={user} signOut={signOut} />
       <HeartIcon
         onClick={() => nav("/favorites")}
