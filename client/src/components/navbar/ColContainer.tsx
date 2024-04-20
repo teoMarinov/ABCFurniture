@@ -20,7 +20,7 @@ const ColContainer = ({ title, options }: ColContainerProps) => {
         </h1>
       </div>
       {options.map((option) => (
-        <div className="text-sm my-4">
+        <div className="lg:text-sm text-xs my-4">
           <Link
             to={`products/${title}/${option.replace(/\s+/g, "-")}`}
             className="w-fit cursor-pointer"
