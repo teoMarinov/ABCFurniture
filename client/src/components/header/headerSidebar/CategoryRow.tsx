@@ -9,8 +9,8 @@ interface CategoryRowProps {
 const CategoryRow = ({ title, options }: CategoryRowProps) => {
   const titleNormalized = title.replace(/\s+/g, "-").toLocaleLowerCase();
   return (
-    <div className="w-">
-      <div className="flex items-center relative">
+    <>
+      <div className="flex items-center relative ml-3">
         <ChevronRight className="size-4 absolute -left-4 top-[5px]" />
         <h1 className="font-semibold underline cursor-pointer">
           <SheetClose asChild>
@@ -24,7 +24,7 @@ const CategoryRow = ({ title, options }: CategoryRowProps) => {
         </h1>
       </div>
       {options.map((option) => (
-        <div className="lg:text-sm text-sm my-4 ml-3" key={option}>
+        <div className="lg:text-sm text-sm my-4 ml-5" key={option}>
           <SheetClose asChild>
             <Link
               to={`products/${titleNormalized}/${option.replace(/\s+/g, "-")}`}
@@ -35,7 +35,7 @@ const CategoryRow = ({ title, options }: CategoryRowProps) => {
           </SheetClose>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

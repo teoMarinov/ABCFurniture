@@ -22,6 +22,7 @@ export default function Home() {
               element={"This is sub-category"}
             />
 
+            <Route path="/promotions" element={"PRO RPO"} />
             <Route element={<PrivateRoutes />}></Route>
           </Routes>
         </AuthProvider>

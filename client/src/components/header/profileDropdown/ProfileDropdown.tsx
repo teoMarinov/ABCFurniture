@@ -19,7 +19,7 @@ const ProfileDropdown = ({ nav, user, signOut }: ProfileDropdownProps) => {
     <HoverCard openDelay={50} closeDelay={50}>
       <HoverCardTrigger asChild>
         <PersonIcon
-          // onClick={() => nav(user ? "/profile" : "/login")}
+          onClick={() => nav(user ? "/accout-options" : "/login")}
           className="h-6 w-6 cursor-pointer hover:scale-[110%]"
         />
       </HoverCardTrigger>
