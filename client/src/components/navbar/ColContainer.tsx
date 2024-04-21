@@ -9,8 +9,8 @@ const ColContainer = ({ title, options }: ColContainerProps) => {
   const titleNormalized = title.replace(/\s+/g, "-").toLocaleLowerCase();
   return (
     <div className="w-56 p-4">
-      <div className="flex items-center relative group">
-        <ChevronRight className="size-4 absolute -left-4 top-[5px] group-hover:scale-125" />
+      <div className="flex items-center relative group w-fit">
+        <ChevronRight className="size-4 absolute -left-3.5 top-[5px] group-hover:-left-[16.5px] group-hover:scale-125" />
         <h1 className="font-semibold underline cursor-pointer group-hover:scale-105">
           <Link
             to={`products/${titleNormalized}`}
