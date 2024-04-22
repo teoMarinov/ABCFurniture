@@ -5,6 +5,7 @@ import Header from "./components/header/Header";
 import AuthProvider from "./context/AuthProvider";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import NavbarRoutes from "./routes/NavbarRoutes";
+import AddProduct from "./components/add-product/AddProduct";
 
 export default function Home() {
   return (
@@ -18,6 +19,8 @@ export default function Home() {
           {/* Routes including navbar */}
           <Route element={<NavbarRoutes />}>
             <Route path="/" element={"Home"} />
+            <Route path="/*" element={"ERROR 404"} />
+            <Route path="/add-product" element={<AddProduct />} />
             <Route path="/products/:category" element={"This is category"} />
             <Route
               path="/products/:category/:subcategory"

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as z from "zod";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -17,7 +16,6 @@ import {
 
 import CardWrapper from "./CardWrapper";
 import { Button } from "../ui/button";
-import axios from "axios";
 import { FormError } from "./FormError";
 import { FormSuccess } from "./FormSuccess";
 import { useAuth } from "@/context/AuthProvider";

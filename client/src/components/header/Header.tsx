@@ -15,7 +15,7 @@ const Header = () => {
       </div>
       <img
         src={logo}
-        className="cursor-pointer size-32"
+        className="cursor-pointer lg:size-44 size-32"
         onClick={() => nav("/")}
       />
       <div className=" sm:block hidden w-1/2">
