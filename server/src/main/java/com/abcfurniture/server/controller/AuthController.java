@@ -4,6 +4,7 @@ package com.abcfurniture.server.controller;
 import com.abcfurniture.server.dto.LoginDTO;
 import com.abcfurniture.server.dto.LoginResponseDTO;
 import com.abcfurniture.server.dto.RegisterDTO;
+import com.abcfurniture.server.enums.UserRoleEnum;
 import com.abcfurniture.server.repository.UserRepository;
 import com.abcfurniture.server.service.AuthenticationService;
 import jakarta.validation.Valid;
@@ -30,7 +31,7 @@ public class AuthController {
             return new LoginResponseDTO("Email already in use");
         }
 
-            authenticationService.registerUser(body.getName(), body.getEmail(), body.getPassword());
+        authenticationService.registerUser(body.getName(), body.getEmail(), body.getPassword(), UserRoleEnum.CUSTOMER );
 
 
         return authenticationService.loginUser(body.getEmail(), body.getPassword());

@@ -3,6 +3,7 @@ package com.abcfurniture.server.service;
 
 import com.abcfurniture.server.dto.LoginResponseDTO;
 import com.abcfurniture.server.dto.UserDTO;
+import com.abcfurniture.server.enums.UserRoleEnum;
 import com.abcfurniture.server.model.ApplicationUser;
 
 import com.abcfurniture.server.repository.UserRepository;
@@ -37,9 +38,9 @@ public class AuthenticationService {
 
 
 
-    public void registerUser(String name, String email, String password) {
+    public void registerUser(String name, String email, String password, UserRoleEnum role) {
         String encodedPassword = passwordEncoder.encode(password);
-        userRepository.save(new ApplicationUser(name, email, encodedPassword));
+        userRepository.save(new ApplicationUser(name, email, encodedPassword, role.toString()));
     }
 
     public LoginResponseDTO loginUser(String email, String password) {

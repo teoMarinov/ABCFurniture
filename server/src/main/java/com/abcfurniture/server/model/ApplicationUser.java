@@ -42,7 +42,7 @@ public class ApplicationUser implements UserDetails {
 
     private String password;
 
-    private final String role = "CUSTOMER";
+    private String role;
 
     private final LocalDateTime created_at = LocalDateTime.now();
 
@@ -54,10 +54,11 @@ public class ApplicationUser implements UserDetails {
         return created_at;
     }
 
-    public ApplicationUser(String name, String email, String password) {
+    public ApplicationUser(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     @Override
