@@ -9,7 +9,7 @@ interface NavbarItemButtonProps {
 const NavbarItemButton = ({ title, navTo }: NavbarItemButtonProps) => {
   return (
     <NavigationMenuItem>
-      <Button variant={"ghost"} className="lg:w-60 w-32">
+      <Button variant={"ghost"} className="lg:w-60 w-32" asChild>
         <Link to={navTo}>{title}</Link>
       </Button>
     </NavigationMenuItem>
