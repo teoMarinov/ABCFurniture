@@ -1,6 +1,5 @@
 import * as z from "zod";
 
-
 export const LoginSchema = z.object({
   email: z.string().email({
     message: "Email is required",
@@ -29,10 +28,6 @@ export const RegisterSchema = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
-
-const imageSchema = z.object({
-  image: z.string(),
-});
 
 const validCategories = [
   "kitchen",
@@ -79,17 +74,23 @@ const validSubCategories = [
 ];
 
 export const newProductSchema = z.object({
-  name: z.string().min(1, {message: " "}),
-  description: z.string().min(1, {message: " "}),
+  name: z.string().min(1, { message: " " }),
+  description: z.string().min(1, { message: " " }),
   category: z
     .string()
-    .min(1, {message: " "})
+    .min(1, { message: " " })
     .refine((value) => validCategories.includes(value)),
   sub_category: z
     .string()
-    .min(1, {message: " "})
+    .min(1, { message: " " })
     .refine((value) => validSubCategories.includes(value)),
-  price: z.number().min(1, {message: " "}),
-  quantity: z.number().min(1, {message: " "}),
-  images: z.array(imageSchema).min(1, {message: " "}),
+  price: z
+    .string()
+    .min(1, { message: " " })
+    .refine((val) => Number(val) > 0),
+  quantity: z
+    .string()
+    .min(1, { message: " " })
+    .refine((val) => Number(val) > 0),
+  images: z.array(z.string()).min(1, { message: " " }),
 });

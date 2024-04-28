@@ -26,17 +26,22 @@ const AddProduct = () => {
       description: "",
       category: "",
       sub_category: "",
-      price: 0,
-      quantity: 0,
-      images: [],
+      price: "0",
+      quantity: "1",
+      images: [
+        "https://buffer.com/library/content/images/2023/10/free-images.jpg",
+        "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
+      ],
     },
   });
 
   const onSubmit = (values: z.infer<typeof newProductSchema>) => {
     setError("");
     setSuccess("");
+
     startTransition(() => {
       request("post", "/product/new", values).then(({ data }) => {
+        console.log(data)
         if (data.error) {
           setError(data.error);
           return;
@@ -72,6 +77,7 @@ const AddProduct = () => {
                 className="font-normal w-full"
                 size={"sm"}
                 type="submit"
+                disabled={isPending}
               >
                 Create
               </Button>

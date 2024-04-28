@@ -13,21 +13,7 @@ import SubCategorySelect from "./Selectors/SubCategorySelect";
 import { Textarea } from "@/components/ui/textarea";
 
 interface ProductFormProps {
-  form: UseFormReturn<
-    {
-      sub_category: string;
-      category: string;
-      name: string;
-      description: string;
-      price: number;
-      quantity: number;
-      images: {
-        image: string;
-      }[];
-    },
-    any,
-    undefined
-  >;
+  form: UseFormReturn<any>;
   isPending: boolean;
 }
 const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
@@ -88,6 +74,7 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
               <FormLabel>Price</FormLabel>
               <FormControl>
                 <Input
+                  type="number"
                   {...field}
                   disabled={isPending}
                   className="w-64"
@@ -106,6 +93,7 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
               <FormLabel>Quantity</FormLabel>
               <FormControl>
                 <Input
+                  type="number"
                   {...field}
                   disabled={isPending}
                   className="w-64"
