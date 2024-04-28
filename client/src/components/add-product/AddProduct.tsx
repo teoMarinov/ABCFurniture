@@ -4,23 +4,20 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { newProductSchema } from "../../schemas";
 
-import { Input } from "../ui/input";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 
 import { Button } from "../ui/button";
 
-import { useAuth } from "@/context/AuthProvider";
 import { request } from "@/config/axios-helper";
+import ImageDisplay from "./ImageDisplay";
+
+import ProductInfoForm from "./ProductInfoForm";
 
 const AddProduct = () => {
-  const { signIn } = useAuth();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof newProductSchema>>({
     resolver: zodResolver(newProductSchema),
@@ -36,28 +33,53 @@ const AddProduct = () => {
   });
 
   const onSubmit = (values: z.infer<typeof newProductSchema>) => {
-    request("post", "/product/new", values).then(({ data }) => {
-      if (data.error) {
-        return;
-      }
-      signIn(data.user, data.jwt);
+    setError("");
+    setSuccess("");
+    startTransition(() => {
+      request("post", "/product/new", values).then(({ data }) => {
+        if (data.error) {
+          setError(data.error);
+          return;
+        }
+        setSuccess(data.success);
+      });
     });
   };
 
   return (
-    <div className="h-[calc(100vh-116px)] bg-gray-300 w-full flex gap-x-6 p-6">
-      {/* Images part */}
-      <div className=" h-[790px] flex items-center">
-        <div className="h-full w-[600px] grid grid-rows-4 grid-cols-3 gap-4">
-          <div className="row-span-3 col-span-3 bg-purple-400">01</div>
-          <div className=" bg-purple-400">02</div>
-          <div className=" bg-purple-400">03</div>
-          <div className=" bg-purple-400">03</div>
-        </div>
-      </div>
-      {/* Text part */}
-      <div className="bg-blue-200 h-[790px] w-full"></div>
-    </div>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="h-[calc(100vh-116px)] w-full flex gap-x-6 p-6"
+      >
+        <ImageDisplay />
+
+        {/* Data form */}
+
+        <>
+          <Card className="shadow-md h-[790px] w-full">
+            <CardHeader>
+              <div className="w-full flex items-center justify-center">
+                <h1 className={"text-3xl font-semibold"}>Add a new product</h1>
+              </div>
+            </CardHeader>
+            <CardContent className="pb-3">
+              <ProductInfoForm form={form} isPending={isPending} />
+            </CardContent>
+            <CardFooter>
+              <Button
+                variant={"default"}
+                className="font-normal w-full"
+                size={"sm"}
+                type="submit"
+              >
+                Create
+              </Button>
+            </CardFooter>
+          </Card>
+        </>
+      </form>
+    </Form>
   );
 };
 
