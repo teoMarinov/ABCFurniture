@@ -1,8 +1,19 @@
 import { SelectGroup, SelectItem } from "@/components/ui/select";
 import Selector from "./Selector";
+import { ControllerRenderProps } from "react-hook-form";
 
 interface CategorySelectProps {
-  field: any;
+  field: ControllerRenderProps<{
+    name: string;
+    description: string;
+    category: string;
+    sub_category: string;
+    price: number;
+    quantity: number;
+    images: {
+        image: string;
+    }[];
+}, "category">;
 }
 const CategorySelect = ({ field }: CategorySelectProps) => {
   return (

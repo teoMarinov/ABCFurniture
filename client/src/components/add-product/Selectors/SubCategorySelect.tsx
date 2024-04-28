@@ -1,14 +1,25 @@
+import { ControllerRenderProps } from "react-hook-form";
 import Selector from "./Selector";
-import KitchenOptions from "./KitchenOptions";
-import BedroomOptions from "./BedroomOptions";
-import LivingAndDiningOptions from "./LivingAndDiningOptions";
-import LightingOptions from "./LightingOptions";
-import ChildrenOptions from "./ChildrenOptions";
-import HallwayOptions from "./HallwayOptions";
-import OutdoorOptions from "./OutdoorOptions";
+import BedroomOptions from "./subcategoryOptions/BedroomOptions";
+import ChildrenOptions from "./subcategoryOptions/ChildrenOptions";
+import HallwayOptions from "./subcategoryOptions/HallwayOptions";
+import KitchenOptions from "./subcategoryOptions/KitchenOptions";
+import LightingOptions from "./subcategoryOptions/LightingOptions";
+import LivingAndDiningOptions from "./subcategoryOptions/LivingAndDiningOptions";
+import OutdoorOptions from "./subcategoryOptions/OutdoorOptions";
 
 interface SubCategorySelectProps {
-  field: any;
+  field: ControllerRenderProps<{
+    category: string;
+    name: string;
+    description: string;
+    sub_category: string;
+    price: number;
+    quantity: number;
+    images: {
+        image: string;
+    }[];
+}, "sub_category">
   category: string;
 }
 const SubCategorySelect = ({ field, category }: SubCategorySelectProps) => {
