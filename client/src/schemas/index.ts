@@ -79,17 +79,17 @@ const validSubCategories = [
 ];
 
 export const newProductSchema = z.object({
-  name: z.string().min(1),
-  description: z.string().min(1),
+  name: z.string().min(1, {message: " "}),
+  description: z.string().min(1, {message: " "}),
   category: z
     .string()
-    .min(1)
+    .min(1, {message: " "})
     .refine((value) => validCategories.includes(value)),
   sub_category: z
     .string()
-    .min(1)
+    .min(1, {message: " "})
     .refine((value) => validSubCategories.includes(value)),
-  price: z.number().min(1),
-  quantity: z.number().min(1),
-  images: z.array(imageSchema).min(1),
+  price: z.number().min(1, {message: " "}),
+  quantity: z.number().min(1, {message: " "}),
+  images: z.array(imageSchema).min(1, {message: " "}),
 });
