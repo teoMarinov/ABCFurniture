@@ -12,7 +12,7 @@ import SearchBar from "../header/SearchBar";
 const Navbar = () => {
   return (
     <div>
-      <div className="h-10 xl:px-32 px-5 py-1 sm:flex hidden">
+      <div className="h-[40px] xl:px-32 px-5 py-1 sm:flex hidden">
         <NavigationMenu className="">
           <NavigationMenuList className="lg:gap-x-20 gap-x-5">
             <NavigationMenuItem>

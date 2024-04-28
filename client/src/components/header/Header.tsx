@@ -9,7 +9,7 @@ const Header = () => {
   const nav = useNavigate();
 
   return (
-    <div className="w-screen h-[8vh] shadow-sm border-b border-gray-400 shadow-gray-200 p-4 flex justify-between items-center xl:px-32 px-5">
+    <div className="w-full h-[76px] shadow-sm border-b border-gray-400 shadow-gray-200 p-4 flex justify-between items-center xl:px-32 px-5">
       <div className="block sm:hidden w-24">
         <HeaderSidebar />
       </div>

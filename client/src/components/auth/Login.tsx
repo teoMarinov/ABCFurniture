@@ -55,7 +55,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-[92vh] flex justify-center items-center">
+    <div className="w-full h-[calc(100%-76px)] flex justify-center items-center">
       <CardWrapper
         headerLabel="Welcome back"
         linkTo="/register"

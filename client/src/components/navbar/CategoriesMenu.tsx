@@ -1,7 +1,13 @@
-import { bedroomOptions, childrenOptions, hallwayOptions, kitchenOptions, lightingOptions, livingDiningOptions, outdoorOptions } from "@/common/furniture-categories";
+import {
+  bedroomOptions,
+  childrenOptions,
+  hallwayOptions,
+  kitchenOptions,
+  lightingOptions,
+  livingDiningOptions,
+  outdoorOptions,
+} from "@/common/furniture-categories";
 import ColContainer from "./ColContainer";
-
-
 
 const CategoriesMenu = () => {
   return (
