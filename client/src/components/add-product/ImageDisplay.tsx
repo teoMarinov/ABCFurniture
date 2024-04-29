@@ -36,10 +36,10 @@ const ImageDisplay = ({
           <img className="max-h-full max-w-full" src={images[display!]} />
           <PlusCircle
             size={100}
-            className="group-hover:scale-125 transition absolute -z-50"
+            className="group-hover:scale-125 transition absolute -z-10"
           />
           <input
-            className="cursor-pointer file:cursor-pointer w-[590px] h-[580px] opacity-0 z-50 absolute "
+            className="cursor-pointer file:cursor-pointer w-[590px] h-[580px] opacity-0 z-0 absolute "
             type="file"
             onChange={handleOnChange}
             multiple
