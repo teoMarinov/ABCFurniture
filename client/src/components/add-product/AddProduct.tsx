@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as z from "zod";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -35,17 +36,21 @@ const AddProduct = () => {
     },
   });
 
+  console.log(form.getValues("images"));
+
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    form.setValue("images", [...form.getValues("images"), file]);
-    reader.onload = () => {
-      if (typeof reader.result === "string") {
-        setImagePreview([...imagePreview, reader.result]);
-      }
-    };
-    reader.readAsDataURL(file);
+    const files = Array.from(e.target.files!);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+      form.setValue("images", [...form.getValues("images"), file]);
+      reader.onload = () => {
+        if (typeof reader.result === "string") {
+          setImagePreview((prevPreview: any) => [...prevPreview, reader.result]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
   };
 
   const handleRemove = (index: number) => {
@@ -54,8 +59,6 @@ const AddProduct = () => {
     form.setValue("images", images);
     setImagePreview(imagePreview.filter((_, i) => i !== index));
   };
-
- 
 
   const onSubmit = async (values: z.infer<typeof newProductSchema>) => {
     startTransition(() => {

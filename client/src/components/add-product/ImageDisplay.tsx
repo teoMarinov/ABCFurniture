@@ -23,7 +23,7 @@ const ImageDisplay = ({
   useEffect(() => {
     if (images.length === 0) {
       setDisplay(null);
-    } else if (images.length === 1) {
+    } else if (images.length > 0) {
       setDisplay(0);
     }
   }, [images]);
@@ -42,6 +42,7 @@ const ImageDisplay = ({
             className="cursor-pointer file:cursor-pointer w-[590px] h-[580px] opacity-0 z-50 absolute "
             type="file"
             onChange={handleOnChange}
+            multiple
           />
         </div>
 
@@ -50,7 +51,7 @@ const ImageDisplay = ({
             <CarouselContent className="w-[600px] gap-x-0.5 ml-[1px]">
               {images.map((image: string, index) => (
                 <CarouselItem
-                  key={image}
+                  key={index}
                   className="group h-[180px] basis-1/3 flex items-center justify-center border-2 shadow-md rounded-md p-1 relative cursor-pointer overflow-hidden"
                   onClick={() => setDisplay(index)}
                 >
