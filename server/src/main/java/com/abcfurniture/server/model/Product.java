@@ -4,30 +4,28 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String category;
 
     private String sub_category;
 
-
     private final LocalDateTime added_at = LocalDateTime.now();
 
     private float price;
 
     private int quantity;
-
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
