@@ -13,10 +13,14 @@ import { request } from "@/config/axios-helper";
 import ImageDisplay from "./ImageDisplay";
 
 import ProductInfoForm from "./ProductInfoForm";
+import axios from "axios";
 
 const AddProduct = () => {
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+  const upload_preset = "jynhwbpv";
+
+  const [imageData, setImageData] = useState<File[]>([]);
+  const [imagePreview, setImagePreview] = useState<string[]>([]);
+
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof newProductSchema>>({
@@ -26,28 +30,51 @@ const AddProduct = () => {
       description: "",
       category: "",
       sub_category: "",
-      price: "0",
+      price: "1",
       quantity: "1",
-      images: [
-        "https://buffer.com/library/content/images/2023/10/free-images.jpg",
-        "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-      ],
+      images: [],
     },
   });
 
-  const onSubmit = (values: z.infer<typeof newProductSchema>) => {
-    setError("");
-    setSuccess("");
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImageData([...imageData, file]);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        setImagePreview([...imagePreview, reader.result]);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
 
+  const onSubmit = (values: z.infer<typeof newProductSchema>) => {
     startTransition(() => {
-      request("post", "/product/new", values).then(({ data }) => {
-        console.log(data)
-        if (data.error) {
-          setError(data.error);
-          return;
-        }
-        setSuccess(data.success);
+      const formData = new FormData();
+      imageData.map((data) => {
+        formData.append("file", data);
       });
+
+      formData.append("upload_preset", upload_preset);
+
+      axios
+        .post(
+          "https://api.cloudinary.com/v1_1/dl5y0big3/image/upload",
+          formData
+        )
+        .then(({ data }) => {
+          const currentImages = form.getValues("images");
+          form.setValue("images", [...currentImages, data.secure_url]);
+        })
+        .catch((err) => console.log(err));
+      request("post", "/product/new", values)
+        .then(({ data }) => {
+          if (data.error) {
+            return;
+          }
+        })
+        .catch((err) => console.log("SECOND", err));
     });
   };
 
@@ -55,12 +82,11 @@ const AddProduct = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="h-[calc(100vh-116px)] w-full flex gap-x-6 p-6"
+        className="h-[calc(100vh-116px)] w-full flex gap-x-12 p-6 px-12"
       >
-        <ImageDisplay />
+        <ImageDisplay images={imagePreview} handleOnChange={handleOnChange} />
 
         {/* Data form */}
-
         <>
           <Card className="shadow-md h-[790px] w-full">
             <CardHeader>
@@ -68,9 +94,11 @@ const AddProduct = () => {
                 <h1 className={"text-3xl font-semibold"}>Add a new product</h1>
               </div>
             </CardHeader>
-            <CardContent className="pb-3">
+
+            <CardContent className="pb-4">
               <ProductInfoForm form={form} isPending={isPending} />
             </CardContent>
+
             <CardFooter>
               <Button
                 variant={"default"}

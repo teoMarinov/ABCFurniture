@@ -4,7 +4,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { UseFormReturn } from "react-hook-form";
@@ -32,7 +31,6 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
                 placeholder="Add product name"
               />
             </FormControl>
-            <FormMessage />
           </FormItem>
         )}
       />
@@ -46,7 +44,6 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
               <FormControl>
                 <CategorySelect field={field} />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -62,7 +59,6 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
                   field={field}
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -79,9 +75,10 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
                   disabled={isPending}
                   className="w-64"
                   placeholder="Add price"
+                  min={1}
+
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -98,9 +95,9 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
                   disabled={isPending}
                   className="w-64"
                   placeholder="Add product quantity"
+                  min={1}
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -115,11 +112,10 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
               <Textarea
                 {...field}
                 disabled={isPending}
-                className="h-[435px]"
+                className="h-[450px]"
                 placeholder="Add product description"
               />
             </FormControl>
-            <FormMessage />
           </FormItem>
         )}
       />
