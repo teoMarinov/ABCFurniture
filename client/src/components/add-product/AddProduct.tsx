@@ -55,12 +55,14 @@ const AddProduct = () => {
     setImagePreview(imagePreview.filter((_, i) => i !== index));
   };
 
+ 
+
   const onSubmit = async (values: z.infer<typeof newProductSchema>) => {
     startTransition(() => {
       const imageUrls: string[] = [];
       const formData = new FormData();
 
-      const uploadPromises = values.images.map(async (data) => {
+      const uploadPromises = values.images.map(async (data, index) => {
         formData.append("file", data);
         formData.append("upload_preset", upload_preset);
 
@@ -77,6 +79,7 @@ const AddProduct = () => {
           );
           imageUrls.push(response.data.secure_url);
         } catch (err) {
+          console.log("Problem at index", index);
           console.error(err);
         }
       });
@@ -99,8 +102,11 @@ const AddProduct = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="h-[calc(100vh-116px)] w-full flex gap-x-12 p-6 px-12"
       >
-
-        <ImageDisplay images={imagePreview} handleOnChange={handleOnChange} handleRemove={handleRemove}/>
+        <ImageDisplay
+          images={imagePreview}
+          handleOnChange={handleOnChange}
+          handleRemove={handleRemove}
+        />
 
         {/* Data form */}
         <>
@@ -112,9 +118,7 @@ const AddProduct = () => {
             </CardHeader>
 
             <CardContent className="pb-4">
-
               <ProductInfoForm form={form} isPending={isPending} />
-              
             </CardContent>
 
             <CardFooter>
