@@ -18,7 +18,6 @@ import axios from "axios";
 const AddProduct = () => {
   const upload_preset = "jynhwbpv";
 
-  const [imageData, setImageData] = useState<File[]>([]);
   const [imagePreview, setImagePreview] = useState<string[]>([]);
 
   const [isPending, startTransition] = useTransition();
@@ -39,8 +38,8 @@ const AddProduct = () => {
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setImageData([...imageData, file]);
     const reader = new FileReader();
+    form.setValue("images", [...form.getValues("images"), file]);
     reader.onload = () => {
       if (typeof reader.result === "string") {
         setImagePreview([...imagePreview, reader.result]);
@@ -50,31 +49,36 @@ const AddProduct = () => {
   };
 
   const onSubmit = (values: z.infer<typeof newProductSchema>) => {
-    startTransition(() => {
-      const formData = new FormData();
-      imageData.map((data) => {
-        formData.append("file", data);
-      });
-
+    const formData = new FormData();
+    values.images.map((data) => {
+      formData.append("file", data);
       formData.append("upload_preset", upload_preset);
 
       axios
         .post(
           "https://api.cloudinary.com/v1_1/dl5y0big3/image/upload",
-          formData
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            data: formData, // Use the data option to specify the request body
+          }
         )
         .then(({ data }) => {
-          const currentImages = form.getValues("images");
-          form.setValue("images", [...currentImages, data.secure_url]);
+          console.log(data);
         })
-        .catch((err) => console.log(err));
-      request("post", "/product/new", values)
-        .then(({ data }) => {
-          if (data.error) {
-            return;
-          }
-        })
-        .catch((err) => console.log("SECOND", err));
+        .catch((err) => err);
+    });
+
+    startTransition(() => {
+      // request("post", "/product/new", values)
+      //   .then(({ data }) => {
+      //     if (data.error) {
+      //       return;
+      //     }
+      //   })
+      //   .catch((err) => console.log("SECOND", err));
     });
   };
 

@@ -92,5 +92,5 @@ export const newProductSchema = z.object({
     .string()
     .min(1)
     .refine((val) => Number(val) > 0),
-  images: z.array(z.string()).min(1),
+  images: z.array(z.any()),
 });

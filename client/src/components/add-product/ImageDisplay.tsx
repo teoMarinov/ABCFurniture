@@ -16,7 +16,7 @@ const ImageDisplay = ({ images = [], handleOnChange }: ImageDisplayProps) => {
           </div>
         ))}
         <div className="flex items-center justify-center border-2 shadow-md rounded-md p-1">
-          <input type="file" onChange={handleOnChange} accept="image/png, image/jpg"/>
+          <input type="file" onChange={handleOnChange}/>
         </div>
       </div>
     </div>
