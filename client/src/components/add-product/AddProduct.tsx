@@ -21,7 +21,7 @@ const AddProduct = () => {
 
   const [imagePreview, setImagePreview] = useState<string[]>([]);
 
-  const [isPending, startTransition] = useTransition();
+  const [isPending, setIsPending] = useState(false);
 
   const form = useForm<z.infer<typeof newProductSchema>>({
     resolver: zodResolver(newProductSchema),
@@ -36,8 +36,6 @@ const AddProduct = () => {
     },
   });
 
-  console.log(form.getValues("images"));
-
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files!);
 
@@ -46,7 +44,10 @@ const AddProduct = () => {
       form.setValue("images", [...form.getValues("images"), file]);
       reader.onload = () => {
         if (typeof reader.result === "string") {
-          setImagePreview((prevPreview: any) => [...prevPreview, reader.result]);
+          setImagePreview((prevPreview: any) => [
+            ...prevPreview,
+            reader.result,
+          ]);
         }
       };
       reader.readAsDataURL(file);
@@ -61,41 +62,40 @@ const AddProduct = () => {
   };
 
   const onSubmit = async (values: z.infer<typeof newProductSchema>) => {
-    startTransition(() => {
-      const imageUrls: string[] = [];
-      const formData = new FormData();
+    const imageUrls: string[] = [];
+    const formData = new FormData();
 
-      const uploadPromises = values.images.map(async (data, index) => {
-        formData.append("file", data);
-        formData.append("upload_preset", upload_preset);
+    const uploadPromises = values.images.map(async (data, index) => {
+      formData.append("file", data);
+      formData.append("upload_preset", upload_preset);
+      setIsPending(true);
+      try {
+        const response = await axios.post(
+          "https://api.cloudinary.com/v1_1/dl5y0big3/image/upload",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            data: formData,
+          }
+        );
+        imageUrls.push(response.data.secure_url);
+      } catch (err) {
+        console.log("Problem at index", index);
+        console.error(err);
+      }
+    });
 
-        try {
-          const response = await axios.post(
-            "https://api.cloudinary.com/v1_1/dl5y0big3/image/upload",
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-              data: formData,
-            }
-          );
-          imageUrls.push(response.data.secure_url);
-        } catch (err) {
-          console.log("Problem at index", index);
-          console.error(err);
-        }
-      });
-
-      Promise.all(uploadPromises).then(() => {
-        request("post", "/product/new", { ...values, images: imageUrls })
-          .then(({ data }) => {
-            if (data.error) {
-              return;
-            }
-          })
-          .catch((err) => console.error(err));
-      });
+    Promise.all(uploadPromises).then(() => {
+      request("post", "/product/new", { ...values, images: imageUrls })
+        .then(({ data }) => {
+          if (data.error) {
+            return;
+          }
+        })
+        .catch((err) => console.error(err))
+        .finally(() => setIsPending(false));
     });
   };
 
