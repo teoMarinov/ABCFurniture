@@ -48,37 +48,47 @@ const AddProduct = () => {
     reader.readAsDataURL(file);
   };
 
-  const onSubmit = (values: z.infer<typeof newProductSchema>) => {
-    const formData = new FormData();
-    values.images.map((data) => {
-      formData.append("file", data);
-      formData.append("upload_preset", upload_preset);
-
-      axios
-        .post(
-          "https://api.cloudinary.com/v1_1/dl5y0big3/image/upload",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-            data: formData, // Use the data option to specify the request body
-          }
-        )
-        .then(({ data }) => {
-          console.log(data);
-        })
-        .catch((err) => err);
-    });
-
+  const onSubmit = async (values: z.infer<typeof newProductSchema>) => {
+    
     startTransition(() => {
-      // request("post", "/product/new", values)
-      //   .then(({ data }) => {
-      //     if (data.error) {
-      //       return;
-      //     }
-      //   })
-      //   .catch((err) => console.log("SECOND", err));
+
+      const imageUrls: string[] = [];
+      const formData = new FormData();
+
+ 
+      const uploadPromises = values.images.map(async (data) => {
+        formData.append("file", data);
+        formData.append("upload_preset", upload_preset);
+
+        try {
+          const response = await axios.post(
+            "https://api.cloudinary.com/v1_1/dl5y0big3/image/upload",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+              data: formData,
+            }
+          );
+          imageUrls.push(response.data.secure_url);
+        } catch (err) {
+          console.error(err);
+        }
+      });
+
+
+      Promise.all(uploadPromises).then(() => {
+
+
+        request("post", "/product/new", { ...values, images: imageUrls })
+          .then(({ data }) => {
+            if (data.error) {
+              return;
+            }
+          })
+          .catch((err) => console.error(err));
+      });
     });
   };
 
