@@ -48,14 +48,18 @@ const AddProduct = () => {
     reader.readAsDataURL(file);
   };
 
-  const onSubmit = async (values: z.infer<typeof newProductSchema>) => {
-    
-    startTransition(() => {
+  const handleRemove = (index: number) => {
+    const images = [...form.getValues("images")];
+    images.splice(index, 1);
+    form.setValue("images", images);
+    setImagePreview(imagePreview.filter((_, i) => i !== index));
+  };
 
+  const onSubmit = async (values: z.infer<typeof newProductSchema>) => {
+    startTransition(() => {
       const imageUrls: string[] = [];
       const formData = new FormData();
 
- 
       const uploadPromises = values.images.map(async (data) => {
         formData.append("file", data);
         formData.append("upload_preset", upload_preset);
@@ -77,10 +81,7 @@ const AddProduct = () => {
         }
       });
 
-
       Promise.all(uploadPromises).then(() => {
-
-
         request("post", "/product/new", { ...values, images: imageUrls })
           .then(({ data }) => {
             if (data.error) {
@@ -98,7 +99,7 @@ const AddProduct = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="h-[calc(100vh-116px)] w-full flex gap-x-12 p-6 px-12"
       >
-        <ImageDisplay images={imagePreview} handleOnChange={handleOnChange} />
+        <ImageDisplay images={imagePreview} handleOnChange={handleOnChange} handleRemove={handleRemove}/>
 
         {/* Data form */}
         <>
