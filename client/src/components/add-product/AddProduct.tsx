@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { newProductSchema } from "../../schemas";
-
 import { Form } from "@/components/ui/form";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 
@@ -16,7 +15,12 @@ import ImageDisplay from "./ImageDisplay";
 import ProductInfoForm from "./ProductInfoForm";
 import axios from "axios";
 
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+
 const AddProduct = () => {
+  const nav = useNavigate();
+
   const upload_preset = "jynhwbpv";
 
   const [imagePreview, setImagePreview] = useState<string[]>([]);
@@ -61,6 +65,25 @@ const AddProduct = () => {
     setImagePreview(imagePreview.filter((_, i) => i !== index));
   };
 
+  const resetForm = () => {
+    form.reset();
+    setImagePreview([]);
+  };
+
+  const openSonner = (id: number) => {
+    toast("", {
+      description: "The product has been created successfully",
+      position: "top-center",
+      action: {
+        label: "Check product",
+        onClick: () => {
+          console.log(id);
+          nav(`/product/${id}`);
+        },
+      },
+    });
+  };
+
   const onSubmit = async (values: z.infer<typeof newProductSchema>) => {
     const imageUrls: string[] = [];
     const formData = new FormData();
@@ -90,12 +113,11 @@ const AddProduct = () => {
     Promise.all(uploadPromises).then(() => {
       request("post", "/product/new", { ...values, images: imageUrls })
         .then(({ data }) => {
-          if (data.error) {
-            return;
-          }
+          setIsPending(false);
+          resetForm();
+          openSonner(data.id);
         })
-        .catch((err) => console.error(err))
-        .finally(() => setIsPending(false));
+        .catch((err) => console.error(err));
     });
   };
 
@@ -110,7 +132,6 @@ const AddProduct = () => {
           handleOnChange={handleOnChange}
           handleRemove={handleRemove}
         />
-
         {/* Data form */}
         <>
           <Card className="shadow-md h-[790px] w-full">
