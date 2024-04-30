@@ -6,7 +6,8 @@ import AuthProvider from "./context/AuthProvider";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import NavbarRoutes from "./routes/NavbarRoutes";
 import AddProduct from "./components/add-product/AddProduct";
-
+import { Toaster } from "@/components/ui/sonner";
+import HomePage from "./components/home/HomePage";
 export default function Home() {
   return (
     <div className="h-full w-full overflow-auto">
@@ -18,7 +19,7 @@ export default function Home() {
 
           {/* Routes including navbar */}
           <Route element={<NavbarRoutes />}>
-            <Route path="/" element={"Home"} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/*" element={"ERROR 404"} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/products/:category" element={"This is category"} />
@@ -31,10 +32,9 @@ export default function Home() {
             <Route element={<PrivateRoutes />}>
               <Route path="/promotions" element={"PRO RPO"} />
             </Route>
-
           </Route>
-          
         </Routes>
+        <Toaster />
       </AuthProvider>
     </div>
   );
