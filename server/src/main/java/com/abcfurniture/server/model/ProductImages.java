@@ -10,20 +10,14 @@ public class ProductImages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String image;
-
-//    @ManyToOne(fetch =  FetchType.LAZY)
-//    @JoinColumn(name = "product_id")
-//    private Product product;
+    private String url;
+    
 
     public ProductImages() {
     }
 
-    public ProductImages( String image
-//            , Product product
-    ) {
-        this.image = image;
-//        this.product = product;
+    public ProductImages( String url) {
+        this.url = url;
     }
 
     public Integer getId() {
@@ -34,19 +28,12 @@ public class ProductImages {
         this.id = id;
     }
 
-    public String getImage() {
-        return image;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
 }
