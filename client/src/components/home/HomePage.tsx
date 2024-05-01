@@ -13,7 +13,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <div className="flex gap-5 flex-wrap">
       {allProducts.map((product) => (
         <ImageDisplay
           id={product.id}
@@ -27,7 +27,7 @@ const HomePage = () => {
           images={product.images}
         />
       ))}
-    </>
+    </div>
   );
 };
 
