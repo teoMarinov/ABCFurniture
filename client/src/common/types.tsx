@@ -6,7 +6,12 @@ export interface userDataType {
   created_at: string;
 }
 
-export type productType = {
+export interface ImageProps {
+  id: number;
+  url: string;
+}
+
+export interface productType {
   id: number;
   name: string;
   description: string;
@@ -15,5 +20,5 @@ export type productType = {
   added_at: string;
   price: number;
   quantity: number;
-  images: string[];
-};
+  images: ImageProps[];
+}
