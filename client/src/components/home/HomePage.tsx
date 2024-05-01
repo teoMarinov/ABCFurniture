@@ -1,24 +1,23 @@
-import { toast } from "sonner";
-
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { request } from "@/config/axios-helper";
+import { productType } from "@/common/types";
 
 const HomePage = () => {
+  
+  const [allProducts, setAllProducts] = useState<productType[]>([]);
+
+  useEffect(() => {
+    request("get", "/product/all").then(({ data }) => {
+      setAllProducts(data);
+    });
+  }, []);
+
   return (
-    <Button
-      variant="outline"
-      onClick={() =>
-        toast("", {
-          description: "The product has been created successfully",
-          position: "top-center",
-          action: {
-            label: "Check product",
-            onClick: () => console.log("Undo"),
-          },
-        })
-      }
-    >
-      Show Toast
-    </Button>
+    <>
+      {allProducts.map((product) => (
+        <div key={product.id}>{product.name}</div>
+      ))}
+    </>
   );
 };
 
