@@ -10,7 +10,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
 
 import { request } from "@/config/axios-helper";
-import ImageDisplay from "./ImageDisplay";
+import ImagesContainer from "./ImagesContainer";
 
 import ProductInfoForm from "./ProductInfoForm";
 import axios from "axios";
@@ -127,7 +127,7 @@ const AddProduct = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="h-[calc(100vh-116px)] w-full flex gap-x-12 p-6 px-12"
       >
-        <ImageDisplay
+        <ImagesContainer
           images={imagePreview}
           handleOnChange={handleOnChange}
           handleRemove={handleRemove}

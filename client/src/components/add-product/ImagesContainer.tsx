@@ -8,16 +8,16 @@ import {
 } from "@/components/ui/carousel";
 import { useState, useEffect } from "react";
 
-interface ImageDisplayProps {
+interface ImagesContainerProps {
   images: string[];
   handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleRemove: (i: number) => void;
 }
-const ImageDisplay = ({
+const ImagesContainer = ({
   images = [],
   handleOnChange,
   handleRemove,
-}: ImageDisplayProps) => {
+}: ImagesContainerProps) => {
   const [display, setDisplay] = useState<number | null>(null);
 
   useEffect(() => {
@@ -27,7 +27,6 @@ const ImageDisplay = ({
       setDisplay(0);
     }
   }, [images]);
-
 
   return (
     <div className=" h-[790px] flex items-center">
@@ -72,4 +71,4 @@ const ImageDisplay = ({
   );
 };
 
-export default ImageDisplay;
+export default ImagesContainer;
