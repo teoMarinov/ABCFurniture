@@ -29,16 +29,16 @@ const ImagesContainer = ({
   }, [images]);
 
   return (
-    <div className=" h-[790px] flex items-center">
-      <div className="h-full w-[600px] grid grid-rows-4 grid-cols-3 gap-4 ">
-        <div className="row-span-3 col-span-3 flex items-center justify-center border-2 shadow-md rounded-md p-2 group relative">
+    <div className="h-[790px] xl:w-1/3 flex items-center">
+      <div className="h-full w-full flex flex-col gap-4 ">
+        <div className="w-full h-3/4 flex  items-center justify-center border-2 shadow-md rounded-md p-2 group relative">
           <img className="max-h-full max-w-full" src={images[display!]} />
           <PlusCircle
             size={100}
             className="group-hover:scale-125 transition absolute -z-10"
           />
           <input
-            className="cursor-pointer file:cursor-pointer w-[590px] h-[580px] opacity-0 z-0 absolute "
+            className="cursor-pointer file:cursor-pointer xl:w-[590px] w-full h-[580px] opacity-0 z-0 absolute"
             type="file"
             onChange={handleOnChange}
             multiple
@@ -46,8 +46,8 @@ const ImagesContainer = ({
         </div>
 
         {images[0] && (
-          <Carousel className="col-span-3">
-            <CarouselContent className="w-[600px] gap-x-0.5 ml-[1px]">
+          <Carousel>
+            <CarouselContent className="ml-[1px]">
               {images.map((image: string, index) => (
                 <CarouselItem
                   key={index}
@@ -62,8 +62,10 @@ const ImagesContainer = ({
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <div className="xl:block hidden">
+              <CarouselPrevious />
+              <CarouselNext />
+            </div>
           </Carousel>
         )}
       </div>

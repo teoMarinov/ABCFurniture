@@ -125,39 +125,37 @@ const AddProduct = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="h-[calc(100vh-116px)] w-full flex gap-x-12 p-6 px-12"
+        className="xl:h-[calc(100vh-116px)] w-full xl:flex flex-row-reverse gap-x-14 p-6 xl:px-14 xl:space-y-0 space-y-6"
       >
+        <Card className="shadow-md xl:h-[790px] xl:w-2/3 ">
+          <CardHeader>
+            <div className="w-full flex items-center justify-center">
+              <h1 className={"text-3xl font-semibold"}>Add a new product</h1>
+            </div>
+          </CardHeader>
+
+          <CardContent>
+            <ProductInfoForm form={form} isPending={isPending} />
+          </CardContent>
+
+          <CardFooter>
+            <Button
+              variant={"default"}
+              className="font-normal w-full"
+              size={"sm"}
+              type="submit"
+              disabled={isPending}
+            >
+              Create
+            </Button>
+          </CardFooter>
+        </Card>
+
         <ImagesContainer
           images={imagePreview}
           handleOnChange={handleOnChange}
           handleRemove={handleRemove}
         />
-        {/* Data form */}
-        <>
-          <Card className="shadow-md h-[790px] w-full">
-            <CardHeader>
-              <div className="w-full flex items-center justify-center">
-                <h1 className={"text-3xl font-semibold"}>Add a new product</h1>
-              </div>
-            </CardHeader>
-
-            <CardContent className="pb-4">
-              <ProductInfoForm form={form} isPending={isPending} />
-            </CardContent>
-
-            <CardFooter>
-              <Button
-                variant={"default"}
-                className="font-normal w-full"
-                size={"sm"}
-                type="submit"
-                disabled={isPending}
-              >
-                Create
-              </Button>
-            </CardFooter>
-          </Card>
-        </>
       </form>
     </Form>
   );

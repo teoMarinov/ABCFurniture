@@ -34,12 +34,12 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
           </FormItem>
         )}
       />
-      <div className="flex flex-row gap-x-5 justify-between">
+      <div className="flex xl:flex-row flex-col gap-x-5 justify-between">
         <FormField
           control={form.control}
           name="category"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="xl:w-1/4">
               <FormLabel>Category</FormLabel>
               <FormControl>
                 <CategorySelect field={field} />
@@ -51,7 +51,7 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
           control={form.control}
           name="sub_category"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="xl:w-1/4">
               <FormLabel>Sub-Category</FormLabel>
               <FormControl>
                 <SubCategorySelect
@@ -66,17 +66,15 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
           control={form.control}
           name="price"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="xl:w-1/4">
               <FormLabel>Price</FormLabel>
               <FormControl>
                 <Input
                   type="number"
                   {...field}
                   disabled={isPending}
-                  className="w-64"
                   placeholder="Add price"
                   min={1}
-
                 />
               </FormControl>
             </FormItem>
@@ -86,14 +84,13 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
           control={form.control}
           name="quantity"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="xl:w-1/4">
               <FormLabel>Quantity</FormLabel>
               <FormControl>
                 <Input
                   type="number"
                   {...field}
                   disabled={isPending}
-                  className="w-64"
                   placeholder="Add product quantity"
                   min={1}
                 />
@@ -112,7 +109,7 @@ const ProductInfoForm = ({ form, isPending }: ProductFormProps) => {
               <Textarea
                 {...field}
                 disabled={isPending}
-                className="h-[450px]"
+                className="xl:h-[430px] h-[90vh]"
                 placeholder="Add product description"
               />
             </FormControl>
