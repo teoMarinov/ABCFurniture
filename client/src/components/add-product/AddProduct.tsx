@@ -138,7 +138,7 @@ const AddProduct = () => {
             <ProductInfoForm form={form} isPending={isPending} />
           </CardContent>
 
-          <CardFooter>
+          <CardFooter className="xl:block hidden">
             <Button
               variant={"default"}
               className="font-normal w-full"
@@ -156,6 +156,15 @@ const AddProduct = () => {
           handleOnChange={handleOnChange}
           handleRemove={handleRemove}
         />
+        <Button
+          variant={"default"}
+          className="font-normal w-full block xl:hidden"
+          size={"sm"}
+          type="submit"
+          disabled={isPending}
+        >
+          Create
+        </Button>
       </form>
     </Form>
   );
