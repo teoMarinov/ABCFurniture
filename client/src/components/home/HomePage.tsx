@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { request } from "@/config/axios-helper";
-import { productType } from "@/common/types";
-import ImageDisplay from "../common/ImageDisplay";
+
 import logo from "@/assets/logo.svg";
 import { DoubleArrowDownIcon } from "@radix-ui/react-icons";
+import CategoryDisplay from "./CategoryDisplay";
+
+type CategoryInfoType = { name: string; image: string; description: string };
 
 const HomePage = () => {
-  const [allProducts, setAllProducts] = useState<productType[]>([]);
+  const [categoryIfno, setCategoryIfno] = useState<CategoryInfoType[]>([]);
 
   useEffect(() => {
-    request("get", "/product/all").then(({ data }) => {
-      setAllProducts(data);
+    request("get", "/category/main").then(({ data }) => {
+      setCategoryIfno(data);
     });
   }, []);
 
@@ -23,18 +25,12 @@ const HomePage = () => {
         <DoubleArrowDownIcon className="size-10 my-10" />
       </div>
       <div className="flex gap-10 flex-wrap w-4/5">
-        {allProducts.map((product) => (
-          <ImageDisplay
-            key={product.id}
-            id={product.id}
+        {categoryIfno.map((product) => (
+          <CategoryDisplay
+            key={product.name}
             name={product.name}
             description={product.description}
-            category={product.category}
-            sub_category={product.sub_category}
-            added_at={product.added_at}
-            price={product.price}
-            quantity={product.quantity}
-            images={product.images}
+            image={product.image}
           />
         ))}
       </div>
