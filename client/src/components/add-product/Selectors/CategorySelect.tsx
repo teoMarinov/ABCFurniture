@@ -24,7 +24,7 @@ const CategorySelect = ({ field }: CategorySelectProps) => {
       <SelectGroup>
         <SelectItem value="kitchen">Kitchen</SelectItem>
         <SelectItem value="bedroom">Bedroom</SelectItem>
-        <SelectItem value="living_dining">Living Dining</SelectItem>
+        <SelectItem value="living-and-dining-room">Living Dining</SelectItem>
         <SelectItem value="lighting">Lighting</SelectItem>
         <SelectItem value="children">Children</SelectItem>
         <SelectItem value="hallway">Hallway</SelectItem>
