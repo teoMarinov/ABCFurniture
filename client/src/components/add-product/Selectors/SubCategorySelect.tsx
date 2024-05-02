@@ -9,17 +9,20 @@ import LivingAndDiningOptions from "./subcategoryOptions/LivingAndDiningOptions"
 import OutdoorOptions from "./subcategoryOptions/OutdoorOptions";
 
 interface SubCategorySelectProps {
-  field: ControllerRenderProps<{
-    category: string;
-    name: string;
-    description: string;
-    sub_category: string;
-    price: number;
-    quantity: number;
-    images: {
+  field: ControllerRenderProps<
+    {
+      category: string;
+      name: string;
+      description: string;
+      sub_category: string;
+      price: number;
+      quantity: number;
+      images: {
         image: string;
-    }[];
-}, "sub_category">
+      }[];
+    },
+    "sub_category"
+  >;
   category: string;
 }
 const SubCategorySelect = ({ field, category }: SubCategorySelectProps) => {
@@ -31,7 +34,7 @@ const SubCategorySelect = ({ field, category }: SubCategorySelectProps) => {
     >
       {category === "kitchen" && <KitchenOptions />}
       {category === "bedroom" && <BedroomOptions />}
-      {category === "living_dining" && <LivingAndDiningOptions />}
+      {category === "living-and-dining-room" && <LivingAndDiningOptions />}
       {category === "lighting" && <LightingOptions />}
       {category === "children" && <ChildrenOptions />}
       {category === "hallway" && <HallwayOptions />}
