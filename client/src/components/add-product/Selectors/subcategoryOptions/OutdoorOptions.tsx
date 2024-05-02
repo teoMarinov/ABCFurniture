@@ -4,7 +4,7 @@ const OutdoorOptions = () => {
   return (
     <SelectGroup>
       <SelectLabel>Outdoor</SelectLabel>
-      <SelectItem value="outdoor_furniture">Outdoor Furniture</SelectItem>
+      <SelectItem value="outdoor-furniture">Outdoor Furniture</SelectItem>
     </SelectGroup>
   );
 };
