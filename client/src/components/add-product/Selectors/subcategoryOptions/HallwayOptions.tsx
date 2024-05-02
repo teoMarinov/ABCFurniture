@@ -4,8 +4,8 @@ const HallwayOptions = () => {
   return (
     <SelectGroup>
       <SelectLabel>Hallway</SelectLabel>
-      <SelectItem value="console_tables">Console Tables</SelectItem>
-      <SelectItem value="hall_cabinets_and_hangers">Hall Cobinets And Hangers</SelectItem>
+      <SelectItem value="console-tables">Console Tables</SelectItem>
+      <SelectItem value="hall-cabinets-and-hangers">Hall Cobinets And Hangers</SelectItem>
 
     </SelectGroup>
   );
