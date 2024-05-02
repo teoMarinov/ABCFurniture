@@ -18,6 +18,14 @@ public class CategoryDescription {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    public CategoryDescription() {
+    }
+
+    public CategoryDescription(String category_name, String image, String description) {
+        this.category_name = category_name;
+        this.image = image;
+        this.description = description;
+    }
     public String getCategory_name() {
         return category_name;
     }
@@ -42,11 +50,5 @@ public class CategoryDescription {
         this.description = description;
     }
 
-    public CategoryDescription(String category_name, String image, String description) {
-        this.category_name = category_name;
-        this.image = image;
-        this.description = description;
 
-
-    }
 }

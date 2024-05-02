@@ -18,6 +18,15 @@ public class SubCategoryDescription {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    public SubCategoryDescription() {
+    }
+
+    public SubCategoryDescription(String subcategory_name, String image, String description) {
+        this.subcategory_name = subcategory_name;
+        this.image = image;
+        this.description = description;
+    }
+
     public String getSubcategory_name() {
         return subcategory_name;
     }
@@ -42,11 +51,5 @@ public class SubCategoryDescription {
         this.description = description;
     }
 
-    public SubCategoryDescription(String subcategory_name, String image, String description) {
-        this.subcategory_name = subcategory_name;
-        this.image = image;
-        this.description = description;
 
-
-    }
 }

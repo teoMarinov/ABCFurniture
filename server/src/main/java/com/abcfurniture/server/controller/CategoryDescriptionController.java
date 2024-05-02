@@ -20,6 +20,8 @@ public class CategoryDescriptionController {
     @Autowired
     private CategoryDescriptionService categoryDescriptionService;
 
+
+
     @GetMapping("/main")
     public List<CategoryDescription> getInfoMain () {
         return categoryDescriptionService.getMain();
@@ -29,5 +31,5 @@ public class CategoryDescriptionController {
     public List<SubCategoryDescription> getInfoSub () {
         return categoryDescriptionService.getSub();
     }
-    
+
 }
