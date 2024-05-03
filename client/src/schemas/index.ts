@@ -36,7 +36,7 @@ const validCategories = [
   "lighting",
   "children-furniture",
   "hallway",
-  "outdoor",
+  "outdoor-garden",
 ];
 
 const validSubCategories = [
@@ -65,7 +65,7 @@ const validSubCategories = [
   "plafonds",
   "chandeliers-and-pendants",
   "wall-bracket-lamps",
-  "reading-and-bedside-lamps",
+  "reading-&-deside-lamps",
   "floor-lamps",
   "kids-room",
   "console-tables",

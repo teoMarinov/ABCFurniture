@@ -14,7 +14,7 @@ const CategoryDisplay = ({
   return (
     <div
       onClick={() => nav(`/products/${name}`)}
-      className="border-2 shadow-md rounded-md h-[500px] cursor-pointer "
+      className="border-2 shadow-md rounded-md h-[450px] cursor-pointer "
     >
       <div className="w-full h-[85%]">
         {image ? (

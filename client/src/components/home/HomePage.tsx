@@ -28,8 +28,8 @@ const HomePage = () => {
         <h3 className="text-5xl">Room by room</h3>
         <DoubleArrowDownIcon className="size-10 my-10" />
       </div>
-      <div className="w-full flex justify-center mb-32">
-        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 gap-x-6 2xl:w-[90%] w-full 2xl:p-0 px-4">
+      <div className="w-full flex justify-center mb-5">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 2xl:w-[90%] w-full 2xl:p-0 px-4">
           {categoryIfno.map((info) => (
             <CategoryDisplay
               key={info.category_name}
