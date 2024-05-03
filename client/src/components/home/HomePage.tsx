@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { request } from "@/config/axios-helper";
 
 import logo from "@/assets/logo.svg";
@@ -13,6 +13,11 @@ type CategoryInfoType = {
 
 const HomePage = () => {
   const [categoryIfno, setCategoryIfno] = useState<CategoryInfoType[]>([]);
+  const divRef = useRef<HTMLDivElement>(null);
+
+  const scrollToDiv = () => {
+    divRef.current!.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     request("get", "/category/main").then(({ data }) => {
@@ -26,9 +31,12 @@ const HomePage = () => {
         <img src={logo} className="cursor-pointer w-[600px] mb-10" />
         <h1 className="text-7xl mb-10 text-center">Everything you need</h1>
         <h3 className="text-5xl">Room by room</h3>
-        <DoubleArrowDownIcon className="size-10 my-10" />
+        <DoubleArrowDownIcon
+          onClick={scrollToDiv}
+          className="size-10 my-10 cursor-pointer rounded-full"
+        />
       </div>
-      <div className="w-full flex justify-center mb-4">
+      <div ref={divRef} className="w-full flex justify-center mb-4">
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 2xl:w-[90%] w-full 2xl:p-0 px-4">
           {categoryIfno.map((info) => (
             <CategoryDisplay
