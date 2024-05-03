@@ -1,16 +1,16 @@
 package com.abcfurniture.server.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import jakarta.persistence.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 public class SubCategoryDescription {
 
     @Id
+    @UniqueElements
+    private Integer id;
+
     @UniqueElements
     private String subcategory_name;
     private String image;
