@@ -34,7 +34,7 @@ const validCategories = [
   "bedroom",
   "living-and-dining-room",
   "lighting",
-  "children",
+  "children-furniture",
   "hallway",
   "outdoor",
 ];
