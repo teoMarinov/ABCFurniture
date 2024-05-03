@@ -2,7 +2,7 @@ export const kitchenOptions = [
   "classic and rustic kitchens",
   "modern kitchens",
   "sinks",
-  "mising taps",
+  "mixing taps",
   "kitchen worktops",
   "accessories",
 ];
