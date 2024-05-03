@@ -1,15 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { Camera } from "lucide-react";
 
 interface CategoryDisplayProps {
   name: string;
   image: string;
-  description: string;
 }
-const CategoryDisplay = ({
-  name,
-  image,
-  description,
-}: CategoryDisplayProps) => {
+const CategoryDisplay = ({ name, image }: CategoryDisplayProps) => {
   const nav = useNavigate();
   return (
     <div
@@ -20,10 +16,14 @@ const CategoryDisplay = ({
         {image ? (
           <img src={image} />
         ) : (
-          <div className="size-full bg-emerald-50">No image</div>
+          <div className="size-full grid place-items-center bg-slate-200">
+            <Camera className="size-10" />
+          </div>
         )}
       </div>
-      <p>{name}</p>
+      <div className="grid place-items-center h-[15%] rounded-b-md text-2xl capitalize">
+        <p className="font-serif">{name.replace(/-/g, " ")}</p>
+      </div>
     </div>
   );
 };
