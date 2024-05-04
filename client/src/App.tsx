@@ -8,6 +8,7 @@ import NavbarRoutes from "./routes/NavbarRoutes";
 import AddProduct from "./components/add-product/AddProduct";
 import { Toaster } from "@/components/ui/sonner";
 import HomePage from "./components/home/HomePage";
+import CategoryDetails from "./components/categoryDetails/CategoryDetails";
 export default function Home() {
   return (
     <div className="h-full w-full overflow-auto">
@@ -22,7 +23,7 @@ export default function Home() {
             <Route path="/" element={<HomePage />} />
             <Route path="/*" element={"ERROR 404"} />
             <Route path="/add-product" element={<AddProduct />} />
-            <Route path="/products/:category" element={"This is category"} />
+            <Route path="/products/:category" element={<CategoryDetails />} />
             <Route
               path="/products/:category/:subcategory"
               element={"This is sub-category"}
