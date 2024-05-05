@@ -6,9 +6,12 @@ import com.abcfurniture.server.model.SubCategoryDescription;
 import com.abcfurniture.server.repository.CategoryDescriptionRepository;
 import com.abcfurniture.server.repository.SubCategoryDesciptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryDescriptionService {
@@ -25,5 +28,9 @@ public class CategoryDescriptionService {
 
     public List<SubCategoryDescription> getSub(){
         return subCategoryDesciptionRepository.findAll();
+    }
+
+    public Optional<CategoryDescription> getCategoryByName(String name) {
+        return categoryDescriptionRepository.findByCategoryName(name);
     }
 }
