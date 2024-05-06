@@ -6,7 +6,7 @@ import { DoubleArrowDownIcon } from "@radix-ui/react-icons";
 import CategoryDisplay from "./CategoryDisplay";
 
 type CategoryInfoType = {
-  category_name: string;
+  categoryName: string;
   image: string;
   description: string;
 };
@@ -40,8 +40,8 @@ const HomePage = () => {
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 2xl:w-[90%] w-full 2xl:p-0 px-4">
           {categoryIfno.map((info) => (
             <CategoryDisplay
-              key={info.category_name}
-              name={info.category_name}
+              key={info.categoryName}
+              name={info.categoryName}
               image={info.image}
             />
           ))}
