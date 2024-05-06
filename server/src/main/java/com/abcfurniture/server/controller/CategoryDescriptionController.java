@@ -1,6 +1,7 @@
 package com.abcfurniture.server.controller;
 
 
+import com.abcfurniture.server.dto.CategoryDescriptionDTO;
 import com.abcfurniture.server.model.CategoryDescription;
 import com.abcfurniture.server.model.SubCategoryDescription;
 import com.abcfurniture.server.service.CategoryDescriptionService;
@@ -21,7 +22,7 @@ public class CategoryDescriptionController {
 
 
     @GetMapping("/main")
-    public List<CategoryDescription> getInfoMain () {
+    public List<CategoryDescriptionDTO> getInfoMain () {
         return categoryDescriptionService.getMain();
     }
 
