@@ -1,29 +1,24 @@
-import { useNavigate } from "react-router-dom";
-import { Camera } from "lucide-react";
+import CategoryContainer from "../common/CategoryContainer";
+
+type DataType = {
+  categoryName: string;
+  image: string;
+  description: string;
+};
 
 interface CategoryDisplayProps {
-  name: string;
-  image: string;
+  data: DataType[];
 }
-const CategoryDisplay = ({ name, image }: CategoryDisplayProps) => {
-  const nav = useNavigate();
+const CategoryDisplay = ({ data }: CategoryDisplayProps) => {
   return (
-    <div
-      onClick={() => nav(`/products/${name}`)}
-      className="border-2 shadow-md rounded-md h-[450px] cursor-pointer "
-    >
-      <div className="w-full h-[85%]">
-        {image ? (
-          <img src={image} />
-        ) : (
-          <div className="size-full grid place-items-center bg-slate-200">
-            <Camera className="size-10" />
-          </div>
-        )}
-      </div>
-      <div className="grid place-items-center h-[15%] rounded-b-md text-2xl capitalize">
-        <p className="font-serif">{name.replace(/-/g, " ")}</p>
-      </div>
+    <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 2xl:w-[90%] w-full 2xl:p-0 px-4">
+      {data.map((info) => (
+        <CategoryContainer
+          key={info.categoryName}
+          name={info.categoryName}
+          image={info.image}
+        />
+      ))}
     </div>
   );
 };
