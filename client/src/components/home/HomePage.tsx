@@ -37,15 +37,7 @@ const HomePage = () => {
         />
       </div>
       <div ref={divRef} className="w-full flex justify-center mb-4">
-        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 2xl:w-[90%] w-full 2xl:p-0 px-4">
-          {categoryIfno.map((info) => (
-            <CategoryDisplay
-              key={info.categoryName}
-              name={info.categoryName}
-              image={info.image}
-            />
-          ))}
-        </div>
+        <CategoryDisplay data={categoryIfno} />
       </div>
     </div>
   );
