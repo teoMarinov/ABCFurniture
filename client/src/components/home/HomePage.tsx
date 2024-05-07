@@ -1,29 +1,15 @@
-import { useState, useEffect, useRef } from "react";
-import { request } from "@/config/axios-helper";
+import { useRef } from "react";
 
 import logo from "@/assets/logo.svg";
 import { DoubleArrowDownIcon } from "@radix-ui/react-icons";
-import CategoryDisplay from "./CategoryDisplay";
-
-type CategoryInfoType = {
-  categoryName: string;
-  image: string;
-  description: string;
-};
+import MainCategories from "../categoryDetails/MainCategories";
 
 const HomePage = () => {
-  const [categoryIfno, setCategoryIfno] = useState<CategoryInfoType[]>([]);
   const divRef = useRef<HTMLDivElement>(null);
 
   const scrollToDiv = () => {
     divRef.current!.scrollIntoView({ behavior: "smooth" });
   };
-
-  useEffect(() => {
-    request("get", "/category/main").then(({ data }) => {
-      setCategoryIfno(data);
-    });
-  }, []);
 
   return (
     <div className=" flex flex-col items-center w-full">
@@ -37,7 +23,7 @@ const HomePage = () => {
         />
       </div>
       <div ref={divRef} className="w-full flex justify-center mb-4">
-        <CategoryDisplay data={categoryIfno} />
+        <MainCategories />
       </div>
     </div>
   );
