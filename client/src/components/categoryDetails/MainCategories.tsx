@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { request } from "@/config/axios-helper";
 import CategoryDisplay from "./CategoryDisplay";
 
-export type CategoryInfoType = {
+export interface CategoryInfoType {
   categoryName: string;
-  image: string;
   description: string;
-};
+  image: string;
+}
 
 const MainCategories = () => {
   const [categoryIfno, setCategoryIfno] = useState<CategoryInfoType[]>([]);
