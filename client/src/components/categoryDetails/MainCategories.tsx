@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { request } from "@/config/axios-helper";
-import CategoryDisplay from "../common/CategoryDisplay";
+import CategoryDisplay from "./CategoryDisplay";
 
 export type CategoryInfoType = {
   categoryName: string;

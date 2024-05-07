@@ -1,13 +1,8 @@
-import CategoryContainer from "../common/CategoryContainer";
-
-type DataType = {
-  categoryName: string;
-  image: string;
-  description: string;
-};
+import CategoryContainer from "./CategoryContainer";
+import { CategoryInfoType } from "./MainCategories";
 
 interface CategoryDisplayProps {
-  data: DataType[];
+  data: CategoryInfoType[];
 }
 const CategoryDisplay = ({ data }: CategoryDisplayProps) => {
   return (
