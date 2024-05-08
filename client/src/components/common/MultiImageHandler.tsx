@@ -9,18 +9,18 @@ import {
 } from "@/components/ui/carousel";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
-interface ImagesContainerProps {
+interface MultiImageHandlerProps {
   addToForm: (img: File) => void;
   imagePreview: string[];
   setImagePreview: Dispatch<SetStateAction<string[]>>;
   removeFromForm: (i: number) => void;
 }
-const ImagesContainer = ({
+const MultiImageHandler = ({
   addToForm,
   imagePreview,
   setImagePreview,
   removeFromForm,
-}: ImagesContainerProps) => {
+}: MultiImageHandlerProps) => {
   const [display, setDisplay] = useState<number | null>(null);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,4 +98,4 @@ const ImagesContainer = ({
   );
 };
 
-export default ImagesContainer;
+export default MultiImageHandler;
