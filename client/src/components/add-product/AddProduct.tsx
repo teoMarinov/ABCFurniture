@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as z from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -9,22 +8,19 @@ import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 
 import { Button } from "../ui/button";
 
-import { request } from "@/config/axios-helper";
-import ImagesContainer from "./ImagesContainer";
+import { request } from "@/utils/axios-helper";
 
 import ProductInfoForm from "./ProductInfoForm";
-import axios from "axios";
+import uploadImage from "@/utils/upload-image-cloudinary";
 
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import MultiImageHandler from "../common/MultiImageHandler";
 
 const AddProduct = () => {
   const nav = useNavigate();
 
-  const upload_preset = "jynhwbpv";
-
   const [imagePreview, setImagePreview] = useState<string[]>([]);
-
   const [isPending, setIsPending] = useState(false);
 
   const form = useForm<z.infer<typeof newProductSchema>>({
@@ -40,34 +36,18 @@ const AddProduct = () => {
     },
   });
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files!);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-      form.setValue("images", [...form.getValues("images"), file]);
-      reader.onload = () => {
-        if (typeof reader.result === "string") {
-          setImagePreview((prevPreview: any) => [
-            ...prevPreview,
-            reader.result,
-          ]);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
+  const addImageToForm = (img: File) => {
+    form.setValue("images", [...form.getValues("images"), img]);
   };
 
-  const handleRemove = (index: number) => {
+  const removeImageFromForm = (index: number) => {
     const images = [...form.getValues("images")];
     images.splice(index, 1);
     form.setValue("images", images);
-    setImagePreview(imagePreview.filter((_, i) => i !== index));
   };
 
   const resetForm = () => {
     form.reset();
-    setImagePreview([]);
   };
 
   const openSonner = (id: number) => {
@@ -86,28 +66,11 @@ const AddProduct = () => {
 
   const onSubmit = async (values: z.infer<typeof newProductSchema>) => {
     const imageUrls: string[] = [];
-    const formData = new FormData();
 
-    const uploadPromises = values.images.map(async (data, index) => {
-      formData.append("file", data);
-      formData.append("upload_preset", upload_preset);
+    const uploadPromises = values.images.map(async (data) => {
       setIsPending(true);
-      try {
-        const response = await axios.post(
-          "https://api.cloudinary.com/v1_1/dl5y0big3/image/upload",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-            data: formData,
-          }
-        );
-        imageUrls.push(response.data.secure_url);
-      } catch (err) {
-        console.log("Problem at index", index);
-        console.error(err);
-      }
+      const result = await uploadImage(data);
+      imageUrls.push(result);
     });
 
     Promise.all(uploadPromises).then(() => {
@@ -151,11 +114,13 @@ const AddProduct = () => {
           </CardFooter>
         </Card>
 
-        <ImagesContainer
-          images={imagePreview}
-          handleOnChange={handleOnChange}
-          handleRemove={handleRemove}
+        <MultiImageHandler
+          addToForm={addImageToForm}
+          imagePreview={imagePreview}
+          setImagePreview={setImagePreview}
+          removeFromForm={removeImageFromForm}
         />
+
         <Button
           variant={"default"}
           className="font-normal w-full block xl:hidden"
