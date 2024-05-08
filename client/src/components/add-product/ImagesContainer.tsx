@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Trash2, PlusCircle } from "lucide-react";
 import {
   Carousel,
@@ -6,33 +7,58 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
 interface ImagesContainerProps {
-  images: string[];
-  handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleRemove: (i: number) => void;
+  addToForm: (img: File) => void;
+  imagePreview: string[];
+  setImagePreview: Dispatch<SetStateAction<string[]>>;
+  removeFromForm: (i: number) => void;
 }
 const ImagesContainer = ({
-  images = [],
-  handleOnChange,
-  handleRemove,
+  addToForm,
+  imagePreview,
+  setImagePreview,
+  removeFromForm,
 }: ImagesContainerProps) => {
   const [display, setDisplay] = useState<number | null>(null);
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files!);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+      addToForm(file);
+      reader.onload = () => {
+        if (typeof reader.result === "string") {
+          setImagePreview((prevPreview: any) => [
+            ...prevPreview,
+            reader.result,
+          ]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const removeImage = (index: number) => {
+    removeFromForm(index);
+    setImagePreview(imagePreview.filter((_, i) => i !== index));
+  };
+
   useEffect(() => {
-    if (images.length === 0) {
+    if (imagePreview.length === 0) {
       setDisplay(null);
-    } else if (images.length > 0) {
+    } else if (imagePreview.length > 0) {
       setDisplay(0);
     }
-  }, [images]);
+  }, [imagePreview]);
 
   return (
     <div className="h-[790px] xl:w-1/3 flex items-center">
       <div className="h-full w-full flex flex-col gap-4 ">
         <div className="w-full h-3/4 flex  items-center justify-center border-2 shadow-md rounded-md p-2 group relative">
-          <img className="max-h-full max-w-full" src={images[display!]} />
+          <img className="max-h-full max-w-full" src={imagePreview[display!]} />
           <PlusCircle
             size={100}
             className="group-hover:scale-125 transition absolute -z-10"
@@ -44,11 +70,10 @@ const ImagesContainer = ({
             multiple
           />
         </div>
-
-        {images[0] && (
+        {imagePreview[0] && (
           <Carousel>
             <CarouselContent className="ml-[1px]">
-              {images.map((image: string, index) => (
+              {imagePreview.map((image: string, index) => (
                 <CarouselItem
                   key={index}
                   className="group h-[180px] basis-1/3 flex items-center justify-center border-2 shadow-md rounded-md p-1 relative cursor-pointer overflow-hidden"
@@ -56,7 +81,7 @@ const ImagesContainer = ({
                 >
                   <Trash2
                     className="z-50 size-7 absolute top-0 right-0 translate-x-6 group-hover:translate-x-0 transition text-red-700 hover:scale-125 cursor-pointer rounded-full p-1"
-                    onClick={() => handleRemove(index)}
+                    onClick={() => removeImage(index)}
                   />
                   <img className="max-h-full max-w-full -z-50" src={image} />
                 </CarouselItem>
