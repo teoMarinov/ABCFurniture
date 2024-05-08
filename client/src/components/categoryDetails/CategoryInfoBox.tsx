@@ -1,12 +1,5 @@
 import { Camera } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import clsx from "clsx";
-import { useState } from "react";
+import EditCategoryInfoBoxContnet from "./EditCategoryInfoBoxContnet";
 interface CategoryInfoBoxProps {
   name?: string;
   description?: string;
@@ -18,7 +11,7 @@ const CategoryInfoBox = ({
   image,
 }: CategoryInfoBoxProps) => {
   return (
-    <div className="flex w-[800px] border-2 border-gray-300 mt-5 mb-8">
+    <div className="flex w-[800px] border-2 border-gray-300 mt-5 mb-8 relative">
       <div className="p-5">
         <div className=" h-[150px] min-w-[150px] bg-slate-200 grid place-items-center">
           {image ? <img src={image} className="size-[150px]" /> : <Camera />}
@@ -30,6 +23,11 @@ const CategoryInfoBox = ({
         </h1>
         <p>{description}</p>
       </div>
+      <EditCategoryInfoBoxContnet
+        name={name}
+        description={description}
+        image={image}
+      />
     </div>
   );
 };
