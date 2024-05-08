@@ -20,7 +20,7 @@ import { FormError } from "./FormError";
 import { FormSuccess } from "./FormSuccess";
 
 import { useAuth } from "@/context/AuthProvider";
-import { request } from "@/config/axios-helper";
+import { request } from "@/utils/axios-helper";
 
 const Login = () => {
   const [error, setError] = useState<string | undefined>("");

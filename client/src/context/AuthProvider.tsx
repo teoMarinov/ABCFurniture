@@ -1,4 +1,4 @@
-import { persistentLogin, setJwtToken } from "@/config/axios-helper";
+import { persistentLogin, setJwtToken } from "@/utils/axios-helper";
 import { userDataType } from "@/common/types";
 import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

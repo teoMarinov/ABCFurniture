@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { request } from "@/config/axios-helper";
+import { request } from "@/utils/axios-helper";
 import CategoryContainer from "./CategoryContainer";
 
 export interface CategoryInfoType {
