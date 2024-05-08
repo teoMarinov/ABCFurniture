@@ -114,12 +114,14 @@ const AddProduct = () => {
           </CardFooter>
         </Card>
 
-        <MultiImageHandler
-          addToForm={addImageToForm}
-          imagePreview={imagePreview}
-          setImagePreview={setImagePreview}
-          removeFromForm={removeImageFromForm}
-        />
+        <div className="xl:w-1/3 h-[790px]">
+          <MultiImageHandler
+            addToForm={addImageToForm}
+            imagePreview={imagePreview}
+            setImagePreview={setImagePreview}
+            removeFromForm={removeImageFromForm}
+          />
+        </div>
 
         <Button
           variant={"default"}
