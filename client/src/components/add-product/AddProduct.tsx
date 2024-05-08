@@ -2,7 +2,7 @@ import * as z from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { newProductSchema } from "../../schemas";
+import { newProductSchema } from "../../schemas/product-schemas";
 import { Form } from "@/components/ui/form";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 
