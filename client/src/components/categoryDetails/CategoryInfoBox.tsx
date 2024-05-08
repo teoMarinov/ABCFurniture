@@ -23,11 +23,13 @@ const CategoryInfoBox = ({
         </h1>
         <p>{description}</p>
       </div>
-      <EditCategoryInfoBoxContnet
-        name={name}
-        description={description}
-        image={image}
-      />
+
+      <div className="relative top-1 right-8">
+        <EditCategoryInfoBoxContnet
+          description={description}
+          image={image}
+        />
+      </div>
     </div>
   );
 };
