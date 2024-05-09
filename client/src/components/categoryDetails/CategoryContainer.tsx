@@ -16,7 +16,7 @@ const CategoryContainer = ({ name, image }: CategoryContainerProps) => {
         <img src={image} className="h-96" />
       ) : (
         <div className="min-h-96 grid place-items-center bg-slate-200">
-          <Camera className="size-10" />
+          <Camera className="size-10 xl:w-[18vw] lg:w-[27.8vw] sm:w-[38vw] w-[60vw]" />
         </div>
       )}
       <div className="grid place-items-center h-12 rounded-b-md text-2xl capitalize">
