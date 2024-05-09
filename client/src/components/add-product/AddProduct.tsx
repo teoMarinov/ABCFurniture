@@ -15,7 +15,7 @@ import uploadImage from "@/utils/upload-image-cloudinary";
 
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import MultiImageHandler from "../common/MultiImageHandler";
+import MultiImageHandler from "../shared/MultiImageHandler";
 
 const AddProduct = () => {
   const nav = useNavigate();

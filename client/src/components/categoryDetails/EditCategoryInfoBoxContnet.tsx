@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { request } from "@/utils/axios-helper";
 import uploadImage from "@/utils/upload-image-cloudinary";
 import { Textarea } from "../ui/textarea";
-import SingleImageHandler from "../common/SingleImageHandler";
+import SingleImageHandler from "../shared/SingleImageHandler";
 import { PenBox } from "lucide-react";
 
 interface EditCategoryInfoBoxContnetProps {
