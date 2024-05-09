@@ -35,8 +35,9 @@ const EditCategoryInfoBoxContnet = ({
   }, [description, image]);
 
   const onCancel = () => {
-    setNewDescription("");
+    setNewDescription(description);
     setNewImage(null);
+    setImagePreview(image);
   };
 
   const onSubmit = async (
