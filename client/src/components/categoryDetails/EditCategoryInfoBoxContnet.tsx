@@ -9,31 +9,25 @@ import { EditCategoryInfo } from "@/schemas/category-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 import * as z from "zod";
 import { request } from "@/utils/axios-helper";
 import uploadImage from "@/utils/upload-image-cloudinary";
-import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import SingleImageHandler from "../common/SingleImageHandler";
 import { PenBox } from "lucide-react";
 
 interface EditCategoryInfoBoxContnetProps {
+  name: string;
   description?: string;
   image?: string;
 }
 const EditCategoryInfoBoxContnet = ({
+  name,
   description = "",
   image = "",
 }: EditCategoryInfoBoxContnetProps) => {
-  const [newDescription, setNewDescription] = useState("");
   const [newImage, setNewImage] = useState("");
 
   const [isPending, setIsPending] = useState(false);
@@ -42,7 +36,7 @@ const EditCategoryInfoBoxContnet = ({
     resolver: zodResolver(EditCategoryInfo),
     defaultValues: {
       description,
-      image,
+      image: image || "",
     },
   });
 
@@ -52,21 +46,18 @@ const EditCategoryInfoBoxContnet = ({
   };
 
   const onSubmit = async (values: z.infer<typeof EditCategoryInfo>) => {
-    console.log(values);
-    setTimeout(() => {
-      // window.location.reload();
-    }, 500);
-    // const imageUrls: string[] = [];
 
-    // setIsPending(true);
-    // const result = await uploadImage(values.image);
-    // imageUrls.push(result);
+    setIsPending(true);
+    const result = await uploadImage(values.image);
 
-    // request("post", "/product/new", { ...values, images: imageUrls })
-    //   .then(() => {
-    //     setIsPending(false);
-    //   })
-    //   .catch((err) => console.error(err));
+    request("put", "/category/main", { ...values, categoryName: name, image: result })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsPending(false);
+      });
   };
 
   return (
