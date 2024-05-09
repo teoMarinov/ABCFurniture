@@ -8,7 +8,7 @@ export interface CategoryInfoType {
   image: string;
 }
 
-const MainCategories = () => {
+const MainCategoriesList = () => {
   const [categoriesIfno, setCategoriesIfno] = useState<CategoryInfoType[]>([]);
   useEffect(() => {
     request("get", "/category/main").then(({ data }) => {
@@ -28,4 +28,4 @@ const MainCategories = () => {
   );
 };
 
-export default MainCategories;
+export default MainCategoriesList;

@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import logo from "@/assets/logo.svg";
 import { DoubleArrowDownIcon } from "@radix-ui/react-icons";
-import MainCategories from "../categoryDetails/MainCategories";
+import MainCategoriesList from "../categoryDetails/MainCategoriesList";
 
 const HomePage = () => {
   const divRef = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ const HomePage = () => {
         />
       </div>
       <div ref={divRef} className="w-full flex justify-center mb-10">
-        <MainCategories />
+        <MainCategoriesList />
       </div>
     </div>
   );

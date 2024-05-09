@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { request } from "@/utils/axios-helper";
-import { CategoryInfoType } from "./MainCategories";
+import { CategoryInfoType } from "./MainCategoriesList";
 import CategoryContainer from "./CategoryContainer";
 import CategoryInfoBox from "./CategoryInfoBox";
 
@@ -11,14 +11,14 @@ export type SubCategoryInfo = {
   image: string;
 };
 
-interface FullCategoryInfoType extends CategoryInfoType {
+interface SubCategoriesList extends CategoryInfoType {
   subcategories: SubCategoryInfo[];
 }
 
-const SubCategories = () => {
+const SubCategoriesList = () => {
   const params = useParams();
 
-  const [categoryIfno, setCategoryIfno] = useState<FullCategoryInfoType | null>(
+  const [categoryIfno, setCategoryIfno] = useState<SubCategoriesList | null>(
     null
   );
 
@@ -47,4 +47,4 @@ const SubCategories = () => {
   );
 };
 
-export default SubCategories;
+export default SubCategoriesList;
