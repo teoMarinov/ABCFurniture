@@ -50,7 +50,7 @@ const EditCategoryInfoBoxContnet = ({
     request("put", "/category/main", {
       description: newDescription,
       categoryName: name,
-      image: img,
+      image: img || imagePreview,
     })
       .then(() => {
         window.location.reload();
