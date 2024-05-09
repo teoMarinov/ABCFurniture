@@ -32,4 +32,17 @@ public class CategoryDescriptionService {
     public Optional<CategoryDescription> getCategoryByName(String name) {
         return categoryDescriptionRepository.findByCategoryName(name);
     }
+
+    public CategoryDescription editCategory(CategoryDescription update) {
+        final String categoryName = update.getCategoryName();
+
+        return categoryDescriptionRepository.findByCategoryName(categoryName)
+                .map(category -> {
+                    category.setDescription(update.getDescription());
+                    category.setImage(update.getImage());
+                    return categoryDescriptionRepository.save(category);
+                })
+                .orElseThrow(() -> new RuntimeException("Category with name '" + categoryName + "' not found"));
+    }
+
 }

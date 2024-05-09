@@ -36,4 +36,9 @@ public class CategoryDescriptionController {
         return categoryDescriptionService.getCategoryByName(name);
     }
 
+    @PutMapping("/main")
+    public CategoryDescription editCategoryInfo(@RequestBody CategoryDescription data) {
+        return categoryDescriptionService.editCategory(data);
+    }
+
 }
