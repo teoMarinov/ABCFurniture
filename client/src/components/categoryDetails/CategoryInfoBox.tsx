@@ -1,7 +1,7 @@
 import { Camera } from "lucide-react";
 import EditCategoryInfoBoxContnet from "./EditCategoryInfoBoxContnet";
 interface CategoryInfoBoxProps {
-  name?: string;
+  name: string;
   description?: string;
   image?: string;
 }
@@ -26,6 +26,7 @@ const CategoryInfoBox = ({
 
       <div className="relative top-1 right-8">
         <EditCategoryInfoBoxContnet
+          name={name}
           description={description}
           image={image}
         />
