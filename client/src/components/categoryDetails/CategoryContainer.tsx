@@ -10,12 +10,12 @@ const CategoryContainer = ({ name, image }: CategoryContainerProps) => {
   return (
     <div
       onClick={() => nav(`/products/${name}`)}
-      className="border-2 shadow-md rounded-md cursor-pointer flex flex-col"
+      className="border-2 shadow-md rounded-md cursor-pointer justify-self-center flex flex-col"
     >
       {image ? (
-        <img src={image} />
+        <img src={image} className="h-96" />
       ) : (
-        <div className="min-h-96 h-full grid place-items-center bg-slate-200">
+        <div className="min-h-96 grid place-items-center bg-slate-200">
           <Camera className="size-10" />
         </div>
       )}

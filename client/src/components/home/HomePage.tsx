@@ -22,7 +22,7 @@ const HomePage = () => {
           className="size-10 my-10 cursor-pointer rounded-full"
         />
       </div>
-      <div ref={divRef} className="w-full flex justify-center mb-4">
+      <div ref={divRef} className="w-full flex justify-center mb-10">
         <MainCategories />
       </div>
     </div>
