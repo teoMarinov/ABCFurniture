@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"categoryName"})})
 public class CategoryDescription {
 
+
     @Id
-    @UniqueElements
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @UniqueElements
     @Column(name = "category_name")
     private String categoryName;
     private String image;
