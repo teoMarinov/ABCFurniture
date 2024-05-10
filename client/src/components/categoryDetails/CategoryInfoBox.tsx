@@ -19,7 +19,7 @@ const CategoryInfoBox = ({
       </div>
       <div className="w-full h-[165px] overflow-hidden text-justify pr-5">
         <h1 className="pt-2 pb-3 text-2xl capitalize absolute left-[47%]">
-          {name}
+          {name?.replace(/-/g, " ")}
         </h1>
         <p className="mt-12 sm:text-base text-sm ">{description}</p>
       </div>
