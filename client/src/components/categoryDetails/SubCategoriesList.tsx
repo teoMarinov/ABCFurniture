@@ -4,6 +4,7 @@ import { request } from "@/utils/axios-helper";
 import { CategoryInfoType } from "./MainCategoriesList";
 import CategoryContainer from "./CategoryContainer";
 import CategoryInfoBox from "./CategoryInfoBox";
+import CategoryEasyNavigation from "./CategoryEasyNavigation";
 
 export type SubCategoryInfo = {
   subcategory_name: string;
@@ -28,20 +29,23 @@ const SubCategoriesList = () => {
     });
   }, [params.category]);
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center mb-9">
       <CategoryInfoBox
         name={categoryIfno?.categoryName}
         description={categoryIfno?.description}
         image={categoryIfno?.image}
       />
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 2xl:w-[90%] w-full 2xl:p-0 px-4">
-        {categoryIfno?.subcategories.map((info) => (
-          <CategoryContainer
-            key={info.subcategory_name}
-            name={info.subcategory_name}
-            image={info.image}
-          />
-        ))}
+      <div className="flex w-full justify-center">
+        <CategoryEasyNavigation currentlyOpen={categoryIfno!.categoryName}/>
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-4 2xl:w-3/4 w-full 2xl:p-0 px-4">
+          {categoryIfno?.subcategories.map((info) => (
+            <CategoryContainer
+              key={info.subcategory_name}
+              name={info.subcategory_name}
+              image={info.image}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
