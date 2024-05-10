@@ -36,7 +36,7 @@ const SubCategoriesList = () => {
         image={categoryIfno?.image}
       />
       <div className="flex w-full justify-center">
-        <CategoryEasyNavigation currentlyOpen={categoryIfno!.categoryName}/>
+        <CategoryEasyNavigation currentlyOpen={categoryIfno?.categoryName}/>
         <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-4 2xl:w-3/4 w-full 2xl:p-0 px-4">
           {categoryIfno?.subcategories.map((info) => (
             <CategoryContainer
