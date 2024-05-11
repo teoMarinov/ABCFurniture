@@ -33,16 +33,15 @@ public class CategoryDescriptionService {
         return categoryDescriptionRepository.findByCategoryName(name);
     }
 
-    public CategoryDescription editCategory(CategoryDescription update) {
-        final String categoryName = update.getCategoryName();
+    public CategoryDescription editCategory(String name, CategoryDescription update) {
 
-        return categoryDescriptionRepository.findByCategoryName(categoryName)
+        return categoryDescriptionRepository.findByCategoryName(name)
                 .map(category -> {
                     category.setDescription(update.getDescription());
                     category.setImage(update.getImage());
                     return categoryDescriptionRepository.save(category);
                 })
-                .orElseThrow(() -> new RuntimeException("Category with name '" + categoryName + "' not found"));
+                .orElseThrow(() -> new RuntimeException("Category with name '" + name + "' not found"));
     }
 
 }
