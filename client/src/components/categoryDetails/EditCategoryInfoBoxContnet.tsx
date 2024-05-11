@@ -47,9 +47,8 @@ const EditCategoryInfoBoxContnet = ({
     setIsPending(true);
     const img = await uploadImage(newImage!);
 
-    request("put", "/category/main", {
+    request("put", `/category/${name}`, {
       description: newDescription,
-      categoryName: name,
       image: img || imagePreview,
     })
       .then(() => {
