@@ -18,8 +18,8 @@ public class Product {
     private String description;
 
     private String category;
-
-    private String sub_category;
+    @Column(name = "sub_category")
+    private String subCategory;
 
     private final LocalDateTime added_at = LocalDateTime.now();
 
@@ -34,11 +34,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String description, String category, String sub_category, float price, int quantity, List<ProductImages> images) {
+    public Product(String name, String description, String category, String subCategory, float price, int quantity, List<ProductImages> images) {
         this.name = name;
         this.description = description;
         this.category = category;
-        this.sub_category = sub_category;
+        this.subCategory = subCategory;
         this.price = price;
         this.quantity = quantity;
         this.images = images;
@@ -60,8 +60,8 @@ public class Product {
         return category;
     }
 
-    public String getSub_category() {
-        return sub_category;
+    public String getSubCategory() {
+        return subCategory;
     }
 
     public LocalDateTime getAdded_at() {
