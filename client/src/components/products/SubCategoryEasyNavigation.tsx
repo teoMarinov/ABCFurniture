@@ -12,10 +12,10 @@ const SubCategoryEasyNavigation = ({
   currentlyOpen,
 }: SubCategoryEasyNavigationProps) => {
   return (
-    <div className="lg:flex flex-col hidden h-full border-2 border-gray-700 w-80 items-center text-2xl rounded-md">
+    <div className="lg:flex flex-col hidden h-full border-2 capitalize border-gray-700 w-80 items-center text-2xl rounded-md">
       <div className="w-full bg-neutral-700 py-4">
-        <h1 className="text-white w-full text-center text-3xl capitalize">
-          {category}
+        <h1 className="text-white w-full text-center text-3xl hover:-translate-y-0.5">
+          <Link to={`/${category}`}>{category?.replace(/-/g, " ")}</Link>
         </h1>
       </div>
       <div className="flex flex-col space-y-6 py-5">
@@ -26,10 +26,11 @@ const SubCategoryEasyNavigation = ({
           >
             <p
               className={clsx(
+                "hover:-translate-y-0.5",
                 currentlyOpen === option.subcategoryName && "underline"
               )}
             >
-              {option.subcategoryName}
+              {option.subcategoryName?.replace(/-/g, " ")}
             </p>
           </Link>
         ))}
