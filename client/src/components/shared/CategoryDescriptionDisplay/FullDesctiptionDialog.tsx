@@ -12,7 +12,7 @@ const FullDesctiptionDialog = ({ description }: FullDesctiptionDialogProps) => {
       <DialogTrigger>
         <div className="w-full h-full absolute top-0 left-0" />
       </DialogTrigger>
-      <DialogContent className="py-14">{description}</DialogContent>
+      <DialogContent className="py-14 text-lg">{description}</DialogContent>
     </Dialog>
   );
 };
