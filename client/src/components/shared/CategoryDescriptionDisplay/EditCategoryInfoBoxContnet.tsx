@@ -7,21 +7,22 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useState, useEffect } from "react";
 
-import { request } from "@/utils/axios-helper";
 import uploadImage from "@/utils/upload-image-cloudinary";
-import { Textarea } from "../ui/textarea";
-import SingleImageHandler from "../shared/UploadImageHandler/SingleImageHandler";
+import { Textarea } from "../../ui/textarea";
+import SingleImageHandler from "../UploadImageHandler/SingleImageHandler";
 import { PenBox } from "lucide-react";
 
 interface EditCategoryInfoBoxContnetProps {
   name: string;
   description?: string;
   image?: string;
+  handleDataChange: (name: string, description: string, image: string) => Promise<void>;
 }
 const EditCategoryInfoBoxContnet = ({
   name,
   description = "",
   image = "",
+  handleDataChange,
 }: EditCategoryInfoBoxContnetProps) => {
   const [imagePreview, setImagePreview] = useState(image);
   const [newImage, setNewImage] = useState<File | null>(null);
@@ -47,10 +48,7 @@ const EditCategoryInfoBoxContnet = ({
     setIsPending(true);
     const img = await uploadImage(newImage!);
 
-    request("put", `/category/${name}`, {
-      description: newDescription,
-      image: img || imagePreview,
-    })
+    handleDataChange(name, newDescription, img || imagePreview)
       .then(() => {
         window.location.reload();
       })

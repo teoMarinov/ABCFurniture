@@ -4,11 +4,13 @@ interface CategoryInfoBoxProps {
   name?: string;
   description?: string;
   image?: string;
+  handleDataChange: (name: string, description: string, image: string) => Promise<void>;
 }
 const CategoryInfoBox = ({
   name,
   description,
   image,
+  handleDataChange,
 }: CategoryInfoBoxProps) => {
   return (
     <div className="flex xl:w-[800px] w-full border-2 border-gray-300 mt-5 mb-8 relative rounded-md">
@@ -29,6 +31,7 @@ const CategoryInfoBox = ({
           name={name!}
           description={description}
           image={image}
+          handleDataChange={handleDataChange}
         />
       </div>
     </div>

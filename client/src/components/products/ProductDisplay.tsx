@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import CategoryInfoBox from "../categoryDetails/CategoryInfoBox";
+import CategoryInfoBox from "../shared/CategoryDescriptionDisplay/CategoryInfoBox";
 import { useState, useEffect } from "react";
 import { productType } from "@/common/types";
 import { request } from "@/utils/axios-helper";
