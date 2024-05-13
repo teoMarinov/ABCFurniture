@@ -12,17 +12,17 @@ const CategoryEasyNavigation = ({
         <h1 className="text-white w-full text-center text-3xl">Categories</h1>
       </div>
       <div className="flex flex-col space-y-6 py-5">
-        <Link to="/products/kitchen">
+        <Link to="/kitchen">
           <p className={clsx(currentlyOpen === "kitchen" && "underline")}>
             Kitchen
           </p>
         </Link>
-        <Link to="/products/bedroom">
+        <Link to="/bedroom">
           <p className={clsx(currentlyOpen === "bedroom" && "underline")}>
             Bedroom
           </p>
         </Link>
-        <Link to="/products/living-and-dining-room">
+        <Link to="/living-and-dining-room">
           <p
             className={clsx(
               currentlyOpen === "living-and-dining-room" && "underline"
@@ -31,12 +31,12 @@ const CategoryEasyNavigation = ({
             Living And Dining Room
           </p>
         </Link>
-        <Link to="/products/lighting">
+        <Link to="/lighting">
           <p className={clsx(currentlyOpen === "lighting" && "underline")}>
             Lighting
           </p>
         </Link>
-        <Link to="/products/children-furniture">
+        <Link to="/children-furniture">
           <p
             className={clsx(
               currentlyOpen === "children-furniture" && "underline"
@@ -45,12 +45,12 @@ const CategoryEasyNavigation = ({
             Children Furniture
           </p>
         </Link>
-        <Link to="/products/hallway">
+        <Link to="/hallway">
           <p className={clsx(currentlyOpen === "hallway" && "underline")}>
             Hallway
           </p>
         </Link>
-        <Link to="/products/outdoor-garden">
+        <Link to="/outdoor-garden">
           <p
             className={clsx(currentlyOpen === "outdoor-garden" && "underline")}
           >

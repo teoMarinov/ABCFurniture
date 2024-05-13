@@ -13,7 +13,7 @@ const ColContainer = ({ title, options }: ColContainerProps) => {
         <ChevronRight className="size-4 absolute -left-3.5 top-[5px] group-hover:-left-[17px] group-hover:scale-125" />
         <h1 className="font-semibold underline cursor-pointer group-hover:scale-105">
           <Link
-            to={`products/${titleNormalized}`}
+            to={`${titleNormalized}`}
             className="w-fit cursor-pointer"
           >
             {title}
@@ -26,7 +26,7 @@ const ColContainer = ({ title, options }: ColContainerProps) => {
           key={option}
         >
           <Link
-            to={`products/${titleNormalized}/${option.replace(/\s+/g, "-")}`}
+            to={`${titleNormalized}/${option.replace(/\s+/g, "-")}`}
             className="w-fit cursor-pointer"
           >
             {option}

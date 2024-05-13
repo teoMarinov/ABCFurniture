@@ -23,15 +23,15 @@ export default function Home() {
           <Route element={<NavbarRoutes />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/*" element={"ERROR 404"} />
-            <Route path="/add-product" element={<AddProduct />} />
-            <Route path="/products/:category" element={<SubCategoriesList />} />
+            <Route path="/:category" element={<SubCategoriesList />} />
             <Route
-              path="/products/:category/:subcategory"
+              path="/:category/:subcategory"
               element={<ProductDisplay />}
             />
 
             {/* Authenticated routes */}
             <Route element={<PrivateRoutes />}>
+              <Route path="/add-product" element={<AddProduct />} />
               <Route path="/promotions" element={"PRO RPO"} />
             </Route>
           </Route>
