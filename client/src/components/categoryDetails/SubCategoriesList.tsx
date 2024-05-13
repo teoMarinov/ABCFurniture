@@ -7,7 +7,7 @@ import CategoryInfoBox from "./CategoryInfoBox";
 import CategoryEasyNavigation from "./CategoryEasyNavigation";
 
 export type SubCategoryInfo = {
-  subcategory_name: string;
+  subcategoryName: string;
   description: string;
   image: string;
 };
@@ -40,8 +40,8 @@ const SubCategoriesList = () => {
         <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-4 2xl:w-3/4 w-full 2xl:p-0 px-4">
           {categoryIfno?.subcategories.map((info) => (
             <CategoryContainer
-              key={info.subcategory_name}
-              name={info.subcategory_name}
+              key={info.subcategoryName}
+              name={info.subcategoryName}
               image={info.image}
               navPath=""
             />
