@@ -46,4 +46,9 @@ public class CategoryDescriptionController {
         return categoryDescriptionService.editCategory(name, data);
     }
 
+    @PutMapping("/sub/{subcategory_name}")
+    public SubCategoryDescription editSubategoryInfo(@PathVariable("subcategory_name") String name, @RequestBody CategoryDescription data) {
+        return categoryDescriptionService.editSubcategory(name, data);
+    }
+
 }

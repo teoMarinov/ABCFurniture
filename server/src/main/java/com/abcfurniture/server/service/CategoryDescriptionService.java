@@ -48,4 +48,15 @@ public class CategoryDescriptionService {
                 .orElseThrow(() -> new RuntimeException("Category with name '" + name + "' not found"));
     }
 
+    public SubCategoryDescription editSubcategory(String name, CategoryDescription update) {
+
+        return subCategoryDesciptionRepository.findBySubcategoryName(name)
+                .map(subcategory -> {
+                    subcategory.setDescription(update.getDescription());
+                    subcategory.setImage(update.getImage());
+                    return subCategoryDesciptionRepository.save(subcategory);
+                })
+                .orElseThrow(() -> new RuntimeException("Category with name '" + name + "' not found"));
+    }
+
 }

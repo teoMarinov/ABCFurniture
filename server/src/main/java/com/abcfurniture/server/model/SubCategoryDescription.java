@@ -5,13 +5,13 @@ import jakarta.persistence.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"subcategoryName"})})
 public class SubCategoryDescription {
 
     @Id
-    @UniqueElements
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @UniqueElements
     @Column(name = "subcategory_name")
     private String subcategoryName;
     private String image;
