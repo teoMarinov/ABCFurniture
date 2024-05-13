@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { productType } from "@/common/types";
 import { request } from "@/utils/axios-helper";
 import { SubCategoryInfo } from "../categoryDetails/SubCategoriesList";
-import CategoryEasyNavigation from "../categoryDetails/CategoryEasyNavigation";
+import SubCategoryEasyNavigation from "./SubCategoryEasyNavigation";
 const ProductDisplay = () => {
   const params = useParams();
   const category = params.category;
@@ -14,12 +14,12 @@ const ProductDisplay = () => {
   const [categoryIfno, setCategoryIfno] = useState<SubCategoryInfo | null>(
     null
   );
+  const [subcategories, setSubcategories] = useState<SubCategoryInfo[]>([])
 
   useEffect(() => {
-    // request("get", `/category/${category}`).then(({ data }) => {
-    //   // setCategoryIfno(data);
-    //   console.log(data);
-    // });
+    request("get", `/category/${category}`).then(({ data }) => {
+      setSubcategories(data.subcategories);
+    });
     request("get", `/category/sub/${subCategory}`).then(({ data }) => {
       setCategoryIfno(data);
     });
@@ -47,7 +47,7 @@ const ProductDisplay = () => {
         image={categoryIfno?.image}
         handleDataChange={editSubcategoryInfo}
       />
-      <CategoryEasyNavigation />
+      <SubCategoryEasyNavigation currentlyOpen={categoryIfno?.subcategoryName} category={category!} options={subcategories}/>
       Your products will be here
     </div>
   );
