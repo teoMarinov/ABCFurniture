@@ -29,7 +29,6 @@ public class ProductController {
 
     @GetMapping("/{sub_category}")
     public Optional<List<Product>> getBySubCategory(@PathVariable("sub_category") String name){
-        System.out.println("name");
         return productService.getAllInSubCategory(name);
     }
 }

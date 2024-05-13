@@ -33,6 +33,10 @@ public class CategoryDescriptionService {
         return categoryDescriptionRepository.findByCategoryName(name);
     }
 
+    public Optional<SubCategoryDescription> getSubcategoryByName(String name) {
+        return subCategoryDesciptionRepository.findBySubcategoryName(name);
+    }
+
     public CategoryDescription editCategory(String name, CategoryDescription update) {
 
         return categoryDescriptionRepository.findByCategoryName(name)

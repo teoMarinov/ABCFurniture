@@ -12,7 +12,8 @@ public class SubCategoryDescription {
     private Integer id;
 
     @UniqueElements
-    private String subcategory_name;
+    @Column(name = "subcategory_name")
+    private String subcategoryName;
     private String image;
     @Lob
     @Column(columnDefinition = "TEXT")
@@ -21,18 +22,18 @@ public class SubCategoryDescription {
     public SubCategoryDescription() {
     }
 
-    public SubCategoryDescription(String subcategory_name, String image, String description) {
-        this.subcategory_name = subcategory_name;
+    public SubCategoryDescription(String subcategoryName, String image, String description) {
+        this.subcategoryName = subcategoryName;
         this.image = image;
         this.description = description;
     }
 
-    public String getSubcategory_name() {
-        return subcategory_name;
+    public String getSubcategoryName() {
+        return subcategoryName;
     }
 
-    public void setSubcategory_name(String subcategory_name) {
-        this.subcategory_name = subcategory_name;
+    public void setSubcategoryName(String subcategoryName) {
+        this.subcategoryName = subcategoryName;
     }
 
     public String getImage() {

@@ -36,6 +36,11 @@ public class CategoryDescriptionController {
         return categoryDescriptionService.getCategoryByName(name);
     }
 
+    @GetMapping("/sub/{subcategory_name}")
+    public Optional<SubCategoryDescription> getSubcategoryByBane(@PathVariable("subcategory_name") String name) {
+        return categoryDescriptionService.getSubcategoryByName(name);
+    }
+
     @PutMapping("/{category_name}")
     public CategoryDescription editCategoryInfo(@PathVariable("category_name") String name, @RequestBody CategoryDescription data) {
         return categoryDescriptionService.editCategory(name, data);
