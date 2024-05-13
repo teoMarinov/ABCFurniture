@@ -9,7 +9,7 @@ import AddProduct from "./components/add-product/AddProduct";
 import { Toaster } from "@/components/ui/sonner";
 import HomePage from "./components/home/HomePage";
 import SubCategoriesList from "./components/categoryDetails/SubCategoriesList";
-import ProductDisplay from "./components/products/ProductDisplay";
+import ProductsList from "./components/products/ProductsList";
 export default function Home() {
   return (
     <div className="h-full w-full overflow-auto">
@@ -26,7 +26,7 @@ export default function Home() {
             <Route path="/:category" element={<SubCategoriesList />} />
             <Route
               path="/:category/:subcategory"
-              element={<ProductDisplay />}
+              element={<ProductsList />}
             />
 
             {/* Authenticated routes */}

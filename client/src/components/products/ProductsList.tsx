@@ -5,7 +5,7 @@ import { productType } from "@/common/types";
 import { request } from "@/utils/axios-helper";
 import { SubCategoryInfo } from "../categoryDetails/SubCategoriesList";
 import SubCategoryEasyNavigation from "./SubCategoryEasyNavigation";
-const ProductDisplay = () => {
+const ProductsList = () => {
   const params = useParams();
   const category = params.category;
   const subCategory = params.subcategory;
@@ -63,4 +63,4 @@ const ProductDisplay = () => {
   );
 };
 
-export default ProductDisplay;
+export default ProductsList;
