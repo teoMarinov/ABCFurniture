@@ -20,7 +20,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signIn = (user: userDataType, jwt: string) => {
     setUser(user);
     setJwtToken(jwt);
-    navigate("/");
   };
 
   const signOut = () => {
@@ -33,7 +32,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       persistentLogin()
         .then(({ data }) => signIn(data.user, data.jwt))
-        .finally(() => navigate("/"));
+        // .finally(() => navigate("/"));
     } catch (error) {
       // console.log(error.message);
     }
