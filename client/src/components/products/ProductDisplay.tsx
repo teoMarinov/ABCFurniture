@@ -27,6 +27,17 @@ const ProductDisplay = () => {
       setProducts(data);
     });
   }, [category, subCategory]);
+  
+  const editSubcategoryInfo = async (
+    name: string,
+    description: string,
+    image: string
+  ) => {
+    request("put", `/category/sub/${name}`, {
+      description,
+      image,
+    });
+  };
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
@@ -34,6 +45,7 @@ const ProductDisplay = () => {
         name={categoryIfno?.subcategoryName}
         description={categoryIfno?.description}
         image={categoryIfno?.image}
+        handleDataChange={editSubcategoryInfo}
       />
       <CategoryEasyNavigation />
       Your products will be here
