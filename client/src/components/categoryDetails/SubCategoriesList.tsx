@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { request } from "@/utils/axios-helper";
 import { CategoryInfoType } from "./MainCategoriesList";
 import CategoryContainer from "./CategoryContainer";
-import CategoryInfoBox from "./CategoryInfoBox";
+import CategoryInfoBox from "../shared/CategoryDescriptionDisplay/CategoryInfoBox";
 import CategoryEasyNavigation from "./CategoryEasyNavigation";
 
 export type SubCategoryInfo = {
@@ -28,15 +28,27 @@ const SubCategoriesList = () => {
       setCategoryIfno(data);
     });
   }, [params.category]);
+
+  const editCategoryInfo = async (
+    name: string,
+    description: string,
+    image: string
+  ) => {
+    request("put", `/category/${name}`, {
+      description,
+      image,
+    });
+  };
   return (
     <div className="w-full flex flex-col items-center mb-9">
       <CategoryInfoBox
         name={categoryIfno?.categoryName}
         description={categoryIfno?.description}
         image={categoryIfno?.image}
+        handleDataChange={editCategoryInfo}
       />
       <div className="flex w-full justify-center">
-        <CategoryEasyNavigation currentlyOpen={categoryIfno?.categoryName}/>
+        <CategoryEasyNavigation currentlyOpen={categoryIfno?.categoryName} />
         <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-4 2xl:w-3/4 w-full 2xl:p-0 px-4">
           {categoryIfno?.subcategories.map((info) => (
             <CategoryContainer
