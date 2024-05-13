@@ -43,6 +43,7 @@ const SubCategoriesList = () => {
               key={info.subcategory_name}
               name={info.subcategory_name}
               image={info.image}
+              navPath=""
             />
           ))}
         </div>

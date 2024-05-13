@@ -4,12 +4,13 @@ import { Camera } from "lucide-react";
 interface CategoryContainerProps {
   name: string;
   image: string;
+  navPath: string;
 }
-const CategoryContainer = ({ name, image }: CategoryContainerProps) => {
+const CategoryContainer = ({ name, image, navPath}: CategoryContainerProps) => {
   const nav = useNavigate();
   return (
     <div
-      onClick={() => nav(`/products/${name}`)}
+      onClick={() => nav(`${navPath}${name}`)}
       className="border-2 shadow-md rounded-md cursor-pointer justify-self-center flex flex-col"
     >
       {image ? (

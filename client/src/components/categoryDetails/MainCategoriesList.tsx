@@ -22,6 +22,7 @@ const MainCategoriesList = () => {
           key={info.categoryName}
           name={info.categoryName}
           image={info.image}
+          navPath="/products/"
         />
       ))}
     </div>
