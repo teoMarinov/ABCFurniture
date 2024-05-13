@@ -1,5 +1,6 @@
 import { Camera } from "lucide-react";
 import EditCategoryInfoBoxContnet from "./EditCategoryInfoBoxContnet";
+import FullDesctiptionDialog from "./FullDesctiptionDialog";
 interface CategoryInfoBoxProps {
   name?: string;
   description?: string;
@@ -27,8 +28,11 @@ const CategoryInfoBox = ({
         <h1 className="pt-2 pb-3 text-2xl capitalize absolute left-[47%]">
           {name?.replace(/-/g, " ")}
         </h1>
-        <div className="mt-12 sm:text-base text-sm h-full line-clamp-5">
-          {description}
+        <div className="mt-12 sm:text-base text-sm h-full line-clamp-5 ">
+          <div className="h-fit relative">
+            {description && <FullDesctiptionDialog description={description} />}
+            {description}
+          </div>
         </div>
       </div>
 
