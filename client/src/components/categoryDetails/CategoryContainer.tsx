@@ -11,7 +11,7 @@ const CategoryContainer = ({ name, image, navPath}: CategoryContainerProps) => {
   return (
     <div
       onClick={() => nav(`${navPath}${name}`)}
-      className="border-2 shadow-md rounded-md cursor-pointer justify-self-center flex flex-col"
+      className="border-2 shadow-md rounded-md cursor-pointer justify-self-center flex flex-col hover:scale-105 transition"
     >
       {image ? (
         <img src={image} className="h-96" />
