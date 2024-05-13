@@ -14,7 +14,7 @@ const ProductDisplay = () => {
   const [categoryIfno, setCategoryIfno] = useState<SubCategoryInfo | null>(
     null
   );
-  const [subcategories, setSubcategories] = useState<SubCategoryInfo[]>([])
+  const [subcategories, setSubcategories] = useState<SubCategoryInfo[]>([]);
 
   useEffect(() => {
     request("get", `/category/${category}`).then(({ data }) => {
@@ -27,7 +27,7 @@ const ProductDisplay = () => {
       setProducts(data);
     });
   }, [category, subCategory]);
-  
+
   const editSubcategoryInfo = async (
     name: string,
     description: string,
@@ -47,8 +47,18 @@ const ProductDisplay = () => {
         image={categoryIfno?.image}
         handleDataChange={editSubcategoryInfo}
       />
-      <SubCategoryEasyNavigation currentlyOpen={categoryIfno?.subcategoryName} category={category!} options={subcategories}/>
-      Your products will be here
+      <div className="flex w-full justify-center">
+        <SubCategoryEasyNavigation
+          currentlyOpen={categoryIfno?.subcategoryName}
+          category={category!}
+          options={subcategories}
+        />
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-4 2xl:w-3/4 w-full 2xl:p-0 px-4">
+          {products.map(product => (
+            <div key={product.id}>{product.name}</div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
