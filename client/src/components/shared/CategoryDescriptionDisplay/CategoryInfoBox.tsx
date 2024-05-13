@@ -4,7 +4,11 @@ interface CategoryInfoBoxProps {
   name?: string;
   description?: string;
   image?: string;
-  handleDataChange: (name: string, description: string, image: string) => Promise<void>;
+  handleDataChange: (
+    name: string,
+    description: string,
+    image: string
+  ) => Promise<void>;
 }
 const CategoryInfoBox = ({
   name,
@@ -23,7 +27,9 @@ const CategoryInfoBox = ({
         <h1 className="pt-2 pb-3 text-2xl capitalize absolute left-[47%]">
           {name?.replace(/-/g, " ")}
         </h1>
-        <p className="mt-12 sm:text-base text-sm ">{description}</p>
+        <div className="mt-12 sm:text-base text-sm h-full line-clamp-5">
+          {description}
+        </div>
       </div>
 
       <div className="relative top-1 right-8">
