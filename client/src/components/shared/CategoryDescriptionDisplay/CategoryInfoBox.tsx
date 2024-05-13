@@ -1,6 +1,7 @@
 import { Camera } from "lucide-react";
 import EditCategoryInfoBoxContnet from "./EditCategoryInfoBoxContnet";
 import FullDesctiptionDialog from "./FullDesctiptionDialog";
+import ImageDialog from "./ImageDialog";
 interface CategoryInfoBoxProps {
   name?: string;
   description?: string;
@@ -21,7 +22,7 @@ const CategoryInfoBox = ({
     <div className="flex xl:w-[800px] w-full border-2 border-gray-300 mt-5 mb-8 relative rounded-md">
       <div className="p-5">
         <div className=" h-[150px] min-w-[150px] bg-slate-200 grid place-items-center">
-          {image ? <img src={image} className="size-[150px]" /> : <Camera />}
+          {image ? <ImageDialog img={image}/> : <Camera />}
         </div>
       </div>
       <div className="w-full h-[165px] overflow-hidden text-justify pr-5">
