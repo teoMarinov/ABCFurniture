@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")
@@ -24,5 +25,11 @@ public class ProductController {
     @GetMapping("/all")
     public List<Product> getAll () {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/{sub_category}")
+    public Optional<List<Product>> getBySubCategory(@PathVariable("sub_category") String name){
+        System.out.println("name");
+        return productService.getAllInSubCategory(name);
     }
 }
