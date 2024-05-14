@@ -6,13 +6,13 @@ import { request } from "@/utils/axios-helper";
 import { SubCategoryInfo } from "../categoryDetails/SubCategoriesList";
 import SubCategoryEasyNavigation from "./SubCategoryEasyNavigation";
 import ProductDisplay from "./ProductDisplay";
+import SortingOptions from "./SortingOptions";
 const ProductsList = () => {
   const params = useParams();
   const category = params.category;
   const subCategory = params.subcategory;
 
   const [products, setProducts] = useState<productType[]>([]);
-  console.log("🚀 ~ ProductsList ~ products:", products);
   const [categoryIfno, setCategoryIfno] = useState<SubCategoryInfo | null>(
     null
   );
@@ -55,17 +55,20 @@ const ProductsList = () => {
           category={category!}
           options={subcategories}
         />
-        <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-4 2xl:w-3/4 w-full 2xl:p-0 px-4">
-          {products.map((product) => (
-            <div key={product.id}>
-              <ProductDisplay
-                id={product.id}
-                name={product.name}
-                image={product.images[0]?.url}
-                imageTwo={product.images[1]?.url}
-              />
-            </div>
-          ))}
+        <div className="2xl:w-3/4 w-full">
+          <SortingOptions />
+          <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-4 w-full 2xl:p-0 px-4">
+            {products.map((product) => (
+              <div key={product.id}>
+                <ProductDisplay
+                  id={product.id}
+                  name={product.name}
+                  image={product.images[0]?.url}
+                  imageTwo={product.images[1]?.url}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
