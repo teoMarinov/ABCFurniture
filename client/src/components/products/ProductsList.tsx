@@ -49,7 +49,7 @@ const ProductsList = () => {
         image={categoryIfno?.image}
         handleDataChange={editSubcategoryInfo}
       />
-      <div className="flex w-full justify-center">
+      <div className="flex w-full justify-center gap-x-5">
         <SubCategoryEasyNavigation
           currentlyOpen={categoryIfno?.subcategoryName}
           category={category!}
