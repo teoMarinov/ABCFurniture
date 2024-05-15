@@ -11,7 +11,7 @@ const ProductDisplay = ({ id, image, name }: ProductDisplayProps) => {
   return (
     <div
       onClick={() => nav(`/product/${id}`)}
-      className="border-2 shadow-md rounded-md cursor-pointer justify-self-center flex flex-col hover:scale-105 transition"
+      className="border-1 shadow-md rounded-md cursor-pointer justify-self-center flex flex-col hover:scale-105 transition mx-7"
     >
       {image ? (
         <img src={image} className={"h-96"} />
