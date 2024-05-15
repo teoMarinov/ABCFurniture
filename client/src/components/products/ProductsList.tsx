@@ -49,15 +49,15 @@ const ProductsList = () => {
         image={categoryIfno?.image}
         handleDataChange={editSubcategoryInfo}
       />
-      <div className="flex w-full justify-center gap-x-4 px-4">
+      <div className="flex w-full justify-center gap-x-6 px-4">
         <SubCategoryEasyNavigation
           currentlyOpen={categoryIfno?.subcategoryName}
           category={category!}
           options={subcategories}
         />
-        <div className="xl:w-3/4">
+        <div className="xl:w-3/4 w-full">
           <SortingOptions />
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 w-full 2xl:p-0 px-4">
+          <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 w-full 2xl:p-0 px-4">
             {products.map((product) => (
               <div key={product.id}>
                 <ProductDisplay
@@ -65,6 +65,7 @@ const ProductsList = () => {
                   name={product.name}
                   image={product.images[0]?.url}
                   imageTwo={product.images[1]?.url}
+                  price={product.price}
                 />
               </div>
             ))}
