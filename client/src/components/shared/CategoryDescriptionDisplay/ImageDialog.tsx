@@ -7,9 +7,9 @@ const ImageDialog = ({ img }: ImageDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <img src={img} className="size-[150px]" />
+        <img src={img} className="size-[200px]" />
       </DialogTrigger>
-      <DialogContent className="p-1">
+      <DialogContent className="p-0">
         <img src={img} className="size-full" />
       </DialogContent>
     </Dialog>
