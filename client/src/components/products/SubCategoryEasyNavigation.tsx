@@ -12,7 +12,7 @@ const SubCategoryEasyNavigation = ({
   currentlyOpen,
 }: SubCategoryEasyNavigationProps) => {
   return (
-    <div className="xl:flex flex-col hidden h-full border-xs capitalize border-gray-400 items-center text-xl">
+    <div className="xl:flex flex-col hidden h-full border-xs capitalize border-gray-400 items-center text-xl mt-3.5">
       <div className="w-full bg-black py-4">
         <h1 className="text-white w-full text-center text-2xl hover:scale-105">
           <Link to={`/${category}`}>{category?.replace(/-/g, " ")}</Link>
