@@ -42,7 +42,7 @@ const ProductsList = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col items-center justify-center w-full mb-10">
       <CategoryInfoBox
         name={categoryIfno?.subcategoryName}
         description={categoryIfno?.description}
@@ -55,7 +55,7 @@ const ProductsList = () => {
           category={category!}
           options={subcategories}
         />
-        <div>
+        <div className="xl:w-3/4">
           <SortingOptions />
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 w-full 2xl:p-0 px-4">
             {products.map((product) => (
