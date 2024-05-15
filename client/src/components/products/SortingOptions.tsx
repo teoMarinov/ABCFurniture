@@ -1,6 +1,6 @@
 const SortingOptions = () => {
   return (
-    <div className="py-4 px-2">
+    <div className="py-4 ">
       <div className="flex items-center justify-between w-full">
         <div className="flex gap-x-3">
           <div className="size-9 border border-black rounded-md">1</div>
