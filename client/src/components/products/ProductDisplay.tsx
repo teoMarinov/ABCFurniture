@@ -12,6 +12,16 @@ interface ProductDisplayProps {
 }
 const ProductDisplay = ({ id, image, name, price }: ProductDisplayProps) => {
   const nav = useNavigate();
+
+  const addToFav = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    console.log(id);
+  };
+
+  const addToCart = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    console.log(id);
+  };
   return (
     <div
       onClick={() => nav(`/product/${id}`)}
@@ -31,10 +41,10 @@ const ProductDisplay = ({ id, image, name, price }: ProductDisplayProps) => {
           {name?.replace(/-/g, " ")}
         </p>
         <div className="absolute flex justify-between px-5 w-full group-hover:translate-y-0 translate-y-8 transition-transform">
-          <p>{price}$</p>
+          <p>{price}€</p>
           <div className="flex mt-1">
-            <HeartIcon className="mr-2 hover:fill-rose-600/60"/>
-            <ShoppingBasket className="hover:scale-110 "/>
+            <HeartIcon onClick={addToFav} className="mr-2 hover:fill-rose-600/60" />
+            <ShoppingBasket onClick={addToCart} className="hover:scale-[115%] transition " />
           </div>
         </div>
       </div>
