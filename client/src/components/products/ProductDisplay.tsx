@@ -13,12 +13,12 @@ interface ProductDisplayProps {
 const ProductDisplay = ({ id, image, name, price }: ProductDisplayProps) => {
   const nav = useNavigate();
 
-  const addToFav = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const addToFav = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.stopPropagation();
     console.log(id);
   };
 
-  const addToCart = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const addToCart = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.stopPropagation();
     console.log(id);
   };
