@@ -19,8 +19,8 @@ const CategoryInfoBox = ({
   handleDataChange,
 }: CategoryInfoBoxProps) => {
   return (
-    <div className="flex xl:w-[800px] w-full border-2 border-gray-300 mt-5 mb-8 relative rounded-md">
-      <div className="p-5">
+    <div className="flex xl:w-[800px] w-full border border-gray-400 mt-5 mb-8 relative ">
+      <div className="p-3">
         <div className=" h-[150px] min-w-[150px] bg-slate-200 grid place-items-center">
           {image ? <ImageDialog img={image}/> : <Camera />}
         </div>
