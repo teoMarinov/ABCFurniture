@@ -8,10 +8,12 @@ import AmountDisplayedOptions from "./AmountDisplayedOptions";
 interface SortingOptionsProps {
   changeSortOrder: (val: string) => void;
   changeAmountDisplayed: (val: string) => void;
+  handleToggle: (val: "grid" | "list") => void;
 }
 const SortingOptions = ({
   changeSortOrder,
   changeAmountDisplayed,
+  handleToggle,
 }: SortingOptionsProps) => {
   const min = 0;
   const max = 999;
@@ -27,11 +29,15 @@ const SortingOptions = ({
     <div className="py-4 ">
       <div className="flex items-center justify-between w-full">
         <div className="flex gap-x-3">
-          <ToggleGroup type="single" defaultValue="List">
-            <ToggleGroupItem value="List">
+          <ToggleGroup
+            onValueChange={handleToggle}
+            type="single"
+            defaultValue="List"
+          >
+            <ToggleGroupItem value="list">
               <ListBulletIcon />
             </ToggleGroupItem>
-            <ToggleGroupItem value="Grid" className="  :bg-red-500">
+            <ToggleGroupItem value="grid" className="  :bg-red-500">
               <ViewGridIcon />
             </ToggleGroupItem>
           </ToggleGroup>
