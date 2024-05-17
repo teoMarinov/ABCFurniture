@@ -20,7 +20,7 @@ const ProductsList = () => {
 
   const [sortBy, setSortBy] = useState("a-z");
   const [amountDisplay, setAmountDisplay] = useState("12");
-  const [displayStyle, setDisplayStyle] = useState("grid");
+  const [displayStyle, setDisplayStyle] = useState<"list" | "grid">("grid");
 
   useEffect(() => {
     request("get", `/category/${category}`).then(({ data }) => {
@@ -71,6 +71,7 @@ const ProductsList = () => {
             changeSortOrder={changeSortOrder}
             changeAmountDisplayed={changeAmountDisplayed}
             handleToggle={setDisplayStyle}
+            currentlySelected={displayStyle}
           />
 
           {displayStyle === "grid" && (

@@ -19,7 +19,7 @@ const OptionSelect = ({
 }: OptionSelectProps) => {
   return (
     <div className="flex items-center gap-x-2">
-      <p>{title}:</p>
+      <p className="cursor-default">{title}:</p>
       <Select onValueChange={handleChange} defaultValue={defaultValue}>
         <SelectTrigger className="w-32">
           <SelectValue />
