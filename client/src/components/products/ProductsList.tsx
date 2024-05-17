@@ -18,6 +18,8 @@ const ProductsList = () => {
   );
   const [subcategories, setSubcategories] = useState<SubCategoryInfo[]>([]);
 
+  const [sortBy, setSortBy] = useState("a-z");
+
   useEffect(() => {
     request("get", `/category/${category}`).then(({ data }) => {
       setSubcategories(data.subcategories);
@@ -25,10 +27,13 @@ const ProductsList = () => {
     request("get", `/category/sub/${subCategory}`).then(({ data }) => {
       setCategoryIfno(data);
     });
+  }, [category, subCategory]);
+
+  useEffect(() => {
     request("get", `/product/${subCategory}`).then(({ data }) => {
       setProducts(data);
     });
-  }, [category, subCategory]);
+  }, [category, sortBy, subCategory]);
 
   const editSubcategoryInfo = async (
     name: string,
@@ -56,7 +61,7 @@ const ProductsList = () => {
           options={subcategories}
         />
         <div className="xl:w-3/4 w-full">
-          <SortingOptions />
+          <SortingOptions handleChange={(sort: string) => setSortBy(sort)} />
           <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 w-full 2xl:p-0 px-4">
             {products.map((product) => (
               <div key={product.id}>
