@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Slider } from "../ui/slider";
+import { Slider } from "../../ui/slider";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ListBulletIcon, ViewGridIcon } from "@radix-ui/react-icons";
 import OptionSelect from "./OptionSelect";

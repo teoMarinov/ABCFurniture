@@ -6,7 +6,7 @@ import { request } from "@/utils/axios-helper";
 import { SubCategoryInfo } from "../category-details/SubCategoriesList";
 import SubCategoryEasyNavigation from "./SubCategoryEasyNavigation";
 import ProductDisplay from "./ProductDisplay";
-import SortingOptions from "./SortingOptions";
+import SortingOptions from "./display-options/SortingOptions";
 const ProductsList = () => {
   const params = useParams();
   const category = params.category;
