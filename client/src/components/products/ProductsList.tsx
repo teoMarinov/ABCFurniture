@@ -3,7 +3,7 @@ import CategoryInfoBox from "../shared/CategoryDescriptionDisplay/CategoryInfoBo
 import { useState, useEffect } from "react";
 import { productType } from "@/common/types";
 import { request } from "@/utils/axios-helper";
-import { SubCategoryInfo } from "../categoryDetails/SubCategoriesList";
+import { SubCategoryInfo } from "../category-details/SubCategoriesList";
 import SubCategoryEasyNavigation from "./SubCategoryEasyNavigation";
 import ProductDisplay from "./ProductDisplay";
 import SortingOptions from "./SortingOptions";

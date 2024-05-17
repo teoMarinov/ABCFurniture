@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import logo from "@/assets/logo.svg";
 import { DoubleArrowDownIcon } from "@radix-ui/react-icons";
-import MainCategoriesList from "../categoryDetails/MainCategoriesList";
+import MainCategoriesList from "../category-details/MainCategoriesList";
 
 const HomePage = () => {
   const divRef = useRef<HTMLDivElement>(null);
