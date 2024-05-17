@@ -19,6 +19,7 @@ const ProductsList = () => {
   const [subcategories, setSubcategories] = useState<SubCategoryInfo[]>([]);
 
   const [sortBy, setSortBy] = useState("a-z");
+  const [amountDisplay, setAmountDisplay] = useState("12");
 
   useEffect(() => {
     request("get", `/category/${category}`).then(({ data }) => {
@@ -33,7 +34,7 @@ const ProductsList = () => {
     request("get", `/product/${subCategory}`).then(({ data }) => {
       setProducts(data);
     });
-  }, [category, sortBy, subCategory]);
+  }, [category, sortBy, subCategory, amountDisplay]);
 
   const editSubcategoryInfo = async (
     name: string,
@@ -45,6 +46,10 @@ const ProductsList = () => {
       image,
     });
   };
+
+  const changeSortOrder = (sort: string) => setSortBy(sort);
+
+  const changeAmountDisplayed = (sort: string) => setAmountDisplay(sort);
 
   return (
     <div className="flex flex-col items-center justify-center w-full mb-10">
@@ -61,7 +66,10 @@ const ProductsList = () => {
           options={subcategories}
         />
         <div className="xl:w-3/4 w-full">
-          <SortingOptions handleChange={(sort: string) => setSortBy(sort)} />
+          <SortingOptions
+            changeSortOrder={changeSortOrder}
+            changeAmountDisplayed={changeAmountDisplayed}
+          />
           <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 w-full 2xl:p-0 px-4">
             {products.map((product) => (
               <div key={product.id}>

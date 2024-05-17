@@ -4,12 +4,15 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ListBulletIcon, ViewGridIcon } from "@radix-ui/react-icons";
 import OptionSelect from "./OptionSelect";
 import SortByOptions from "./SortByOptions";
-import NumberDisplayOptions from "./NumberDisplayOptions";
+import AmountDisplayedOptions from "./AmountDisplayedOptions";
 interface SortingOptionsProps {
-  handleChange: (val: string) => void;
-
+  changeSortOrder: (val: string) => void;
+  changeAmountDisplayed: (val: string) => void;
 }
-const SortingOptions = ({handleChange}: SortingOptionsProps) => {
+const SortingOptions = ({
+  changeSortOrder,
+  changeAmountDisplayed,
+}: SortingOptionsProps) => {
   const min = 0;
   const max = 999;
   const [range, setRange] = useState([min, max]);
@@ -44,11 +47,19 @@ const SortingOptions = ({handleChange}: SortingOptionsProps) => {
           className="w-80"
         />
         <div className="flex gap-x-10 items-center">
-          <OptionSelect title="Sort by" handleChange={handleChange} defaultValue="a-z">
+          <OptionSelect
+            title="Sort by"
+            handleChange={changeSortOrder}
+            defaultValue="a-z"
+          >
             <SortByOptions />
           </OptionSelect>
-          <OptionSelect title="Show" handleChange={handleChange} defaultValue="12">
-            <NumberDisplayOptions />
+          <OptionSelect
+            title="Show"
+            handleChange={changeAmountDisplayed}
+            defaultValue="12"
+          >
+            <AmountDisplayedOptions />
           </OptionSelect>
         </div>
       </div>
