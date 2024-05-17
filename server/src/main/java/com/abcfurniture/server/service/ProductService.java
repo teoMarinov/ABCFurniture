@@ -26,7 +26,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<List<Product>> getAllInSubCategory (String sub_category) {
+    public Optional<List<Product>> getAllInSubCategory (String sub_category,String sort_method, String quantity) {
         return productRepository.findAllBySubCategory(sub_category);
     }
 

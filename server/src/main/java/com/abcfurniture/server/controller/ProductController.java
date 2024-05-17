@@ -27,8 +27,12 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/{sub_category}")
-    public Optional<List<Product>> getBySubCategory(@PathVariable("sub_category") String name){
-        return productService.getAllInSubCategory(name);
+    @GetMapping("/{sub_category}/{sort_method}/{quantity}")
+    public Optional<List<Product>> getBySubCategory(
+            @PathVariable("sub_category") String name,
+            @PathVariable("sort_method") String sort_method,
+            @PathVariable("quantity") String quantity
+    ){
+        return productService.getAllInSubCategory(name, sort_method, quantity);
     }
 }

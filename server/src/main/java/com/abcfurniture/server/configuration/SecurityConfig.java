@@ -37,7 +37,7 @@ public class SecurityConfig {
                     auth.requestMatchers("/auth/**").permitAll();
                     auth.requestMatchers("/category/**").permitAll();
                     auth.requestMatchers("/product/all").permitAll();
-                    auth.requestMatchers("/product/{sub_category}").permitAll();
+                    auth.requestMatchers("/product/{sub_category}/{sort_method}/{quantity}").permitAll();
                     auth.requestMatchers("/product/new").hasAnyAuthority("EMPLOYEE");
                     auth.requestMatchers("/test/customer").hasAnyAuthority("CUSTOMER");
                     auth.anyRequest().authenticated();
