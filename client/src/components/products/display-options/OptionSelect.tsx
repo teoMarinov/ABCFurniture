@@ -9,12 +9,18 @@ interface OptionSelectProps {
   handleChange: (val: string) => void;
   title: string;
   children: React.ReactNode;
+  defaultValue: string;
 }
-const OptionSelect = ({ handleChange, title, children }: OptionSelectProps) => {
+const OptionSelect = ({
+  handleChange,
+  title,
+  children,
+  defaultValue,
+}: OptionSelectProps) => {
   return (
-    <div className="flex items-center">
-      <p className="w-16">{title}:</p>
-      <Select onValueChange={handleChange} defaultValue="a-z">
+    <div className="flex items-center gap-x-2">
+      <p>{title}:</p>
+      <Select onValueChange={handleChange} defaultValue={defaultValue}>
         <SelectTrigger className="w-32">
           <SelectValue />
         </SelectTrigger>
