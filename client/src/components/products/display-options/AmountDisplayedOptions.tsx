@@ -3,7 +3,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-const NumberDisplayOptions = () => {
+const AmountDisplayedOptions = () => {
   return (
     <SelectGroup>
       <SelectItem value="12">12</SelectItem>
@@ -13,4 +13,4 @@ const NumberDisplayOptions = () => {
   );
 };
 
-export default NumberDisplayOptions;
+export default AmountDisplayedOptions;
