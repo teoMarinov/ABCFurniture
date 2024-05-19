@@ -7,6 +7,7 @@ import { SubCategoryInfo } from "../category-details/SubCategoriesList";
 import SubCategoryEasyNavigation from "./SubCategoryEasyNavigation";
 import ProductDisplay from "./ProductDisplay";
 import SortingOptions from "./display-options/SortingOptions";
+import PriceRangeSlider from "./PriceRangeSlider";
 const ProductsList = () => {
   const params = useParams();
   const category = params.category;
@@ -32,9 +33,11 @@ const ProductsList = () => {
   }, [category, subCategory]);
 
   useEffect(() => {
-    request("get", `/product/${subCategory}`).then(({ data }) => {
-      setProducts(data);
-    });
+    request("get", `/product/${subCategory}/${sortBy}/${amountDisplay}`).then(
+      ({ data }) => {
+        setProducts(data);
+      }
+    );
   }, [category, sortBy, subCategory, amountDisplay]);
 
   const editSubcategoryInfo = async (
@@ -52,6 +55,9 @@ const ProductsList = () => {
 
   const changeAmountDisplayed = (sort: string) => setAmountDisplay(sort);
 
+  const [priceRange, setPriceRange] = useState([0, 999]);
+
+
   return (
     <div className="flex flex-col items-center justify-center w-full mb-10">
       <CategoryInfoBox
@@ -61,11 +67,14 @@ const ProductsList = () => {
         handleDataChange={editSubcategoryInfo}
       />
       <div className="flex w-full justify-center gap-x-6 px-4">
-        <SubCategoryEasyNavigation
-          currentlyOpen={categoryIfno?.subcategoryName}
-          category={category!}
-          options={subcategories}
-        />
+        <div>
+          <PriceRangeSlider min={0} max={999} range={priceRange} setRange={setPriceRange}/>
+          <SubCategoryEasyNavigation
+            currentlyOpen={categoryIfno?.subcategoryName}
+            category={category!}
+            options={subcategories}
+          />
+        </div>
         <div className="xl:w-3/4 w-full">
           <SortingOptions
             changeSortOrder={changeSortOrder}
