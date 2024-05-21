@@ -6,7 +6,6 @@ import { ShoppingBasket } from "lucide-react";
 interface ProductDisplayProps {
   id: number;
   image?: string;
-  imageTwo?: string;
   name: string;
   price: number;
 }
