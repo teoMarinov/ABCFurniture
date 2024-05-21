@@ -8,6 +8,7 @@ import SubCategoryEasyNavigation from "./SubCategoryEasyNavigation";
 import ProductDisplay from "./ProductDisplay";
 import SortingOptions from "./display-options/SortingOptions";
 import PriceRangeSlider from "./PriceRangeSlider";
+import ProductListRow from "./ProductListRow";
 const ProductsList = () => {
   const params = useParams();
   const category = params.category;
@@ -57,7 +58,6 @@ const ProductsList = () => {
 
   const [priceRange, setPriceRange] = useState([0, 999]);
 
-
   return (
     <div className="flex flex-col items-center justify-center w-full mb-10">
       <CategoryInfoBox
@@ -68,7 +68,12 @@ const ProductsList = () => {
       />
       <div className="flex w-full justify-center gap-x-6 px-4">
         <div>
-          <PriceRangeSlider min={0} max={999} range={priceRange} setRange={setPriceRange}/>
+          <PriceRangeSlider
+            min={0}
+            max={999}
+            range={priceRange}
+            setRange={setPriceRange}
+          />
           <SubCategoryEasyNavigation
             currentlyOpen={categoryIfno?.subcategoryName}
             category={category!}
@@ -83,7 +88,7 @@ const ProductsList = () => {
             currentlySelected={displayStyle}
           />
 
-          {displayStyle === "grid" && (
+          {displayStyle === "grid" ? (
             <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 w-full 2xl:p-0 px-4">
               {products.map((product) => (
                 <div key={product.id}>
@@ -91,7 +96,19 @@ const ProductsList = () => {
                     id={product.id}
                     name={product.name}
                     image={product.images[0]?.url}
-                    imageTwo={product.images[1]?.url}
+                    price={product.price}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {products.map((product) => (
+                <div key={product.id}>
+                  <ProductListRow
+                    id={product.id}
+                    name={product.name}
+                    image={product.images[0]?.url}
                     price={product.price}
                   />
                 </div>
