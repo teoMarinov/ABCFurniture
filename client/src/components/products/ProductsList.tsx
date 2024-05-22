@@ -110,6 +110,7 @@ const ProductsList = () => {
                     name={product.name}
                     image={product.images[0]?.url}
                     price={product.price}
+                    description={product.description}
                   />
                 </div>
               ))}
