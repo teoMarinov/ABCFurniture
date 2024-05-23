@@ -31,7 +31,7 @@ const ProductListRow = ({
       onClick={() => nav(`/product/${id}`)}
       className="border-b border-gray-400 shadow-md cursor-pointer flex transition p-1"
     >
-      <div className={"w-80 h-60 bg-red-300 overflow-hidden"}>
+      <div className={"w-80 bg-red-300 overflow-hidden"}>
         {image ? (
           <img src={image} className="min-h-full min-w-full" />
         ) : (
@@ -40,13 +40,13 @@ const ProductListRow = ({
           </div>
         )}
       </div>
-      <div className="capitalize w-full flex flex-col justify-between">
-        <h1 className="font-serif text-xl px-1 py-2 my-1 border-b border-gray-400">
+      <div className="capitalize w-full flex flex-col justify-between md:text-xl">
+        <h1 className="font-serif px-1 py-2 my-1 border-b border-gray-400">
           {name?.replace(/-/g, " ")}
         </h1>
-        <p className="px-3 line-clamp-6 h-full pt-1">{description}</p>
-        <div className="flex justify-between pb-2 mt- px-5">
-          <p className="text-2xl">{price}€</p>
+        <p className="px-3 line-clamp-6 h-full md:text-base text-sm pt-1">{description}</p>
+        <div className="flex justify-between pb-2 px-5 items-center">
+          <p className="md:text-2xl text-lg">{price} €</p>
           <div className="flex mt-2 gap-x-2">
             <HeartIcon
               onClick={addToFav}
