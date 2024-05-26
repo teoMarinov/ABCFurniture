@@ -2,7 +2,9 @@ import { Camera } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { HeartIcon } from "lucide-react";
 import { ShoppingBasket } from "lucide-react";
-
+import { useState, useEffect } from "react";
+import handleFavorite from "@/utils/handle-favorite";
+import clsx from "clsx";
 interface ProductDisplayProps {
   id: number;
   image?: string;
@@ -12,9 +14,17 @@ interface ProductDisplayProps {
 const ProductDisplay = ({ id, image, name, price }: ProductDisplayProps) => {
   const nav = useNavigate();
 
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const favoritedIds = JSON.parse(localStorage.getItem("favorited")!) || [];
+    setIsFavorite(favoritedIds.includes(id));
+  }, [id]);
+
   const addToFav = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.stopPropagation();
-    console.log(id);
+    handleFavorite(id);
+    setIsFavorite(!isFavorite);
   };
 
   const addToCart = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
@@ -42,8 +52,17 @@ const ProductDisplay = ({ id, image, name, price }: ProductDisplayProps) => {
         <div className="absolute flex justify-between px-5 w-full group-hover:translate-y-0 translate-y-8 transition-transform">
           <p>{price}€</p>
           <div className="flex mt-1">
-            <HeartIcon onClick={addToFav} className="mr-2 hover:fill-rose-600/60" />
-            <ShoppingBasket onClick={addToCart} className="hover:scale-[115%] transition " />
+            <HeartIcon
+              onClick={addToFav}
+              className={clsx(
+                isFavorite && "text-red-600 fill-rose-600",
+                "mr-2 hover:fill-rose-600/60"
+              )}
+            />
+            <ShoppingBasket
+              onClick={addToCart}
+              className="hover:scale-[115%] transition "
+            />
           </div>
         </div>
       </div>
